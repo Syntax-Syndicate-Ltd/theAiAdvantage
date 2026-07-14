@@ -1,0 +1,811 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap');
+
+:root {
+    --color-navy: #090B1E;
+    --color-navy-dark: #060814;
+    --color-navy-light: #161D3A;
+    --color-teal: #3b82f6; /* change accent color to bright blue */
+    --color-teal-hover: #2563eb;
+    --color-teal-light: rgba(59, 130, 246, 0.15);
+    --color-bg-light: #060814;
+    --color-white: #FFFFFF;
+    --color-text-dark: #CBD5E1;
+    --color-text-muted: #94A3B8;
+    --color-text-light: #F8FAFC;
+    --color-card-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-navy-dark);
+    color: var(--color-text-dark);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+/* 16:9 Slide Deck Scale Container */
+.viewport-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #0c0e18;
+}
+
+#deck {
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    background-color: var(--color-bg-light);
+    border-radius: 1.5rem;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Slide Base Style */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 12.5rem 6rem 5rem 6rem; /* Substantially expanded top padding for giant header logos */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 10;
+    background-image: url('assets/background.png'); /* Set dynamic dark background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--color-text-light); /* Default to light text colors */
+}
+
+.slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 20;
+}
+
+/* Dark Theme Slide (Section Dividers and Titles) */
+.slide.dark-theme {
+    background-color: var(--color-navy);
+    color: var(--color-text-light);
+}
+
+/* Titles and Typography */
+h1, h2, h3, .font-heading {
+    font-family: 'Outfit', sans-serif;
+}
+
+.slide-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--color-white); /* White titles globally */
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.slide.dark-theme .slide-title {
+    color: var(--color-white);
+}
+
+.slide-subtitle {
+    font-size: 1.4rem;
+    color: #94A3B8; /* soft silver/gray subtitle */
+    font-weight: 400;
+}
+
+.slide.dark-theme .slide-subtitle {
+    color: #94A3B8;
+}
+
+/* Custom Card Component (HUD-Style Glassmorphism) */
+.card {
+    background-color: rgba(15, 23, 42, 0.55) !important; /* Translucent dark slate */
+    background-image: none !important; /* Remove Tailwind white/teal background gradients */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    color: var(--color-white);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 194, 168, 0.25);
+    border-color: var(--color-teal);
+    background-color: rgba(20, 30, 55, 0.7) !important;
+}
+
+.slide.dark-theme .card {
+    background-color: rgba(15, 23, 42, 0.55);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: var(--color-white);
+}
+
+/* Signature Motif: Teal Circle Badges */
+.teal-circle-badge {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: var(--color-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    box-shadow: 0 6px 15px rgba(0, 194, 168, 0.35);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+/* Force white background for tool logos that loaded successfully */
+.teal-circle-badge:has(img:not([style*="display: none"])) {
+    background-color: #FFFFFF !important;
+    border: 2px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+.teal-circle-badge img {
+    padding: 2px;
+}
+
+.card:hover .teal-circle-badge {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Slide 1 Neural Network SVG Background Lines */
+.neural-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+.neural-node {
+    fill: var(--color-teal);
+    animation: pulseNode 3s infinite ease-in-out;
+}
+
+.neural-line {
+    stroke: var(--color-teal);
+    stroke-width: 1.5;
+    stroke-dasharray: 8;
+    animation: dashLine 30s infinite linear;
+}
+
+@keyframes pulseNode {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes dashLine {
+    to { stroke-dashoffset: -1000; }
+}
+
+/* Presentation Progress and UI controls overlay */
+.presentation-controls {
+    position: absolute;
+    bottom: 2rem;
+    left: 6rem;
+    right: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+    pointer-events: auto;
+}
+
+.progress-bar-container {
+    width: 350px;
+    height: 8px;
+    background-color: #E2E8F0;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.slide.dark-theme ~ .presentation-controls .progress-bar-container,
+.deck-container .progress-bar-container {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--color-teal);
+    width: 0%;
+    transition: width 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-card-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-navy);
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background-color: var(--color-bg-light);
+    transform: scale(1.05);
+    color: var(--color-teal);
+    border-color: var(--color-teal);
+}
+
+.nav-btn.btn-next {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 194, 168, 0.3);
+}
+
+.nav-btn.btn-next:hover {
+    background-color: var(--color-teal-hover);
+    box-shadow: 0 6px 15px rgba(0, 194, 168, 0.4);
+    color: var(--color-white);
+}
+
+/* Sequential Build System Animations */
+.build-step {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+.build-step.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Wipe build step animation */
+.build-step.wipe-left {
+    clip-path: inset(0 100% 0 0);
+    transform: none;
+    opacity: 0;
+    transition: clip-path 0.7s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.7s ease;
+}
+
+.build-step.wipe-left.revealed {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+}
+
+/* Grow build step animation */
+.build-step.grow {
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+}
+
+.build-step.grow.revealed {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Float up stack layers */
+.build-step.float-up {
+    transform: translateY(40px);
+}
+
+.build-step.float-up.revealed {
+    transform: translateY(0);
+}
+
+/* Slide specific diagram styling */
+.pipeline-connector-arrow {
+    position: relative;
+}
+
+.pipeline-connector-arrow::after {
+    content: '';
+    position: absolute;
+    right: -2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid var(--color-teal);
+    z-index: 10;
+}
+
+.concentric-ring {
+    border: 2.5px dashed rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Hidden by default for sequence reveal */
+    transform: scale(0.92);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.4s ease, border-style 0.4s ease;
+}
+
+/* Revealed Concentric Ring active state (Synchronized with slide steps) */
+.concentric-ring.active-ring {
+    opacity: 1;
+    transform: scale(1);
+    border-style: solid;
+    border-color: rgba(59, 130, 246, 0.8) !important;
+    background-color: rgba(59, 130, 246, 0.03);
+}
+
+/* Wrench Rotate Animation */
+@keyframes spinWrench {
+    0% { transform: rotate(0deg); }
+    30% { transform: rotate(-25deg); }
+    70% { transform: rotate(385deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animate-spin-wrench {
+    animation: spinWrench 2.2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+    transform-origin: center center;
+}
+
+/* Embeddings 2D Scatter Graph */
+.scatter-plot {
+    position: relative;
+    background-color: rgba(11, 15, 25, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+    background-image: 
+        radial-gradient(rgba(59, 130, 246, 0.15) 1.5px, transparent 1.5px),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 20px 20px, 40px 40px, 40px 40px;
+}
+
+.slide.dark-theme .scatter-plot {
+    background-color: rgba(15, 18, 37, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.scatter-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scatter-dot.cluster-a {
+    background-color: #C084FC; /* Neon Purple */
+    box-shadow: 0 0 12px rgba(192, 132, 252, 0.8);
+}
+
+.scatter-dot.cluster-b {
+    background-color: #38BDF8; /* Neon Cyan */
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+}
+
+.scatter-dot.query-dot {
+    background-color: #EF4444;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+    width: 18px;
+    height: 18px;
+    z-index: 20;
+}
+
+/* Speech Bubble Styles */
+.speech-bubble {
+    position: relative;
+    background: var(--color-white);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    border: 2px solid var(--color-card-border);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 40px;
+    border-width: 15px 15px 0;
+    border-style: solid;
+    border-color: var(--color-white) transparent;
+    display: block;
+    width: 0;
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 39px;
+    border-width: 16px 16px 0;
+    border-style: solid;
+    border-color: var(--color-card-border) transparent;
+    display: block;
+    width: 0;
+    z-index: -1;
+}
+
+/* Vibe coding screen mockup */
+.mockup-window {
+    border-radius: 0.75rem;
+    background-color: #1E293B;
+    color: #F8FAFC;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+}
+
+.mockup-header {
+    background-color: #0F172A;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.dot-btn {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+    display: inline-block;
+}
+
+/* Table layout styling */
+table.comp-table th {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+table.comp-table tr:nth-child(even) {
+    background-color: rgba(0, 194, 168, 0.02);
+}
+
+/* Custom drawing connection lines (SVG) */
+.draw-line-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.connection-path {
+    stroke: #38bdf8; /* neon sky blue */
+    stroke-width: 3.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 1.2s ease-in-out;
+    filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.75));
+}
+
+.connection-path.revealed {
+    stroke-dashoffset: 0;
+}
+
+.attention-glow-dot {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    filter: drop-shadow(0 0 8px #38bdf8);
+}
+
+.connection-path.revealed ~ .attention-glow-dot {
+    opacity: 1;
+}
+
+/* Interactive slider menu */
+.slide-menu {
+    position: absolute;
+    top: 2rem;
+    right: 6rem;
+    z-index: 100;
+}
+
+.slide-select {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #FFFFFF !important;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease;
+}
+
+.slide-select:hover {
+    border-color: var(--color-teal) !important;
+}
+
+.slide-select option {
+    background-color: var(--color-navy-dark) !important;
+    color: #FFFFFF !important;
+}
+
+/* Global brand header layout rules */
+.global-logo-left {
+    position: absolute;
+    top: 3.5rem;
+    left: 6rem;
+    z-index: 100;
+    height: 7.8rem; /* Massive high-fidelity logo size */
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.global-logo-right {
+    position: absolute;
+    top: 3.5rem;
+    right: 6rem;
+    z-index: 100;
+    height: 7.8rem; /* Massive high-fidelity logo size */
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.global-logo-left img, .global-logo-right img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.brand-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem; /* Increased font-size */
+    font-weight: 900;
+    letter-spacing: 0.18rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Dark theme card element color overrides */
+.card p, 
+.card span:not(.font-bold), 
+.card li,
+.card ul,
+.card div:not(.teal-circle-badge):not(.bg-teal-50):not(.bg-red-50):not(.bg-slate-100):not(.bg-amber-50):not(.h-28) {
+    color: #CBD5E1 !important; /* Forces readable slate-300 color on dark theme */
+}
+
+.card h3, .card h4, .card h5 {
+    color: #FFFFFF !important;
+}
+
+.card .bg-slate-50, .card .bg-slate-100 {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: #E2E8F0 !important;
+}
+
+.card .bg-teal-50, .card .bg-teal-50\/20, .card .bg-teal-50\/80, .card .bg-teal-50\/10, .card .bg-teal-50\/5 {
+    background-color: rgba(0, 194, 168, 0.12) !important;
+    border-color: rgba(0, 194, 168, 0.25) !important;
+    color: #E0F2FE !important;
+}
+
+.card .bg-red-50 {
+    background-color: rgba(239, 68, 68, 0.12) !important;
+    border-color: rgba(239, 68, 68, 0.25) !important;
+    color: #FEE2E2 !important;
+}
+
+.card .bg-amber-50 {
+    background-color: rgba(245, 158, 11, 0.12) !important;
+    border-color: rgba(245, 158, 11, 0.25) !important;
+    color: #FEF3C7 !important;
+}
+
+.text-slate-800, .text-slate-700, .text-slate-600 {
+    color: #CBD5E1 !important;
+}
+
+.bg-slate-50 {
+    background-color: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.speech-bubble {
+    background-color: rgba(30, 41, 59, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.speech-bubble::after {
+    border-color: rgba(30, 41, 59, 0.8) transparent !important;
+}
+
+#slide-counter {
+    color: #94A3B8 !important;
+}
+
+/* Compensate for title slide custom decorations */
+.slide.dark-theme {
+    background-image: url('assets/background.png') !important;
+}
+
+/* Global Overrides for compiled Tailwind classes to match background.png styling */
+.bg-\[\#00C2A8\] {
+    background-color: #3b82f6 !important;
+}
+.text-\[\#00C2A8\] {
+    color: #38bdf8 !important;
+}
+.border-\[\#00C2A8\] {
+    border-color: #3b82f6 !important;
+}
+.bg-\[\#1B1F3B\] {
+    background-color: #0c0f30 !important;
+}
+.bg-\[\#0F1225\] {
+    background-color: #060814 !important;
+}
+.border-l-\[\#00C2A8\] {
+    border-left-color: #3b82f6 !important;
+}
+.border-t-\[\#00C2A8\] {
+    border-top-color: #3b82f6 !important;
+}
+.bg-teal-50\/80 {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+}
+.text-teal-800 {
+    color: #38bdf8 !important;
+}
+.border-teal-200 {
+    border-color: rgba(59, 130, 246, 0.25) !important;
+}
+.bg-teal-50 {
+    background-color: rgba(59, 130, 246, 0.12) !important;
+}
+.border-teal-300 {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+.text-teal-600 {
+    color: #38bdf8 !important;
+}
+.bg-teal-100 {
+    background-color: rgba(59, 130, 246, 0.25) !important;
+}
+.text-teal-800 {
+    color: #38bdf8 !important;
+}
+.bg-teal-55\/10, .bg-teal-50\/10, .bg-teal-100 {
+    background-color: rgba(59, 130, 246, 0.18) !important;
+    border: 1.5px solid rgba(59, 130, 246, 0.45) !important;
+}
+.bg-teal-50\/5 {
+    background-color: rgba(59, 130, 246, 0.05) !important;
+}
+.text-teal-400 {
+    color: #38bdf8 !important;
+}
+.bg-white {
+    background-color: rgba(15, 23, 42, 0.65) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+.slide .bg-white {
+    background-color: rgba(15, 23, 42, 0.65) !important;
+}
+
+/* Compact drop-down style inside HUD slide-counter */
+.slide-select-compact {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #FFFFFF !important;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    outline: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 1.25rem;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.35rem center !important;
+    background-size: 0.65rem !important;
+    min-width: 3.2rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.slide-select-compact:hover {
+    border-color: var(--color-teal) !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.slide-select-compact option {
+    background-color: var(--color-navy-dark) !important;
+    color: #FFFFFF !important;
+}
+
+/* Global Typography Legibility Overrides (Bigger text for slides) */
+.slide p:not(.brand-text) {
+    font-size: 1.25rem !important;
+    line-height: 1.65 !important;
+}
+
+.slide li {
+    font-size: 1.25rem !important;
+    line-height: 1.65 !important;
+}
+
+.card p {
+    font-size: 1.15rem !important;
+    line-height: 1.65 !important;
+}
+
+.card li {
+    font-size: 1.12rem !important;
+    line-height: 1.65 !important;
+}
+
+.card h3:not(.uppercase) {
+    font-size: 1.65rem !important;
+    font-weight: 800 !important;
+}
+
+.card h4 {
+    font-size: 1.4rem !important;
+    font-weight: 750 !important;
+}
+
+.slide-subtitle {
+    font-size: 1.55rem !important;
+    color: #94A3B8 !important;
+    margin-top: 0.25rem !important;
+}
+
+.scatter-plot span {
+    font-size: 1rem !important; /* Force legible size on interactive diagram nodes */
+}

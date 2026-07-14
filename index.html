@@ -1,0 +1,2662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI Workshop — Understanding, Building & Working with GenAI</title>
+    <!-- Tailwind CSS for rich grid layouts and structural styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Core styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="viewport-wrapper">
+        <div id="deck">
+
+            <!-- Global Brand Header Overlays -->
+            <div class="global-logo-left">
+                <img src="assets/syntax.png" alt="Syntax" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                <span class="brand-text text-white font-extrabold tracking-wider hidden">SYNTAX SYNDICATE</span>
+            </div>
+            <div class="global-logo-right">
+                <img src="assets/intellecta.png" alt="Intellecta" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                <span class="brand-text text-teal-400 font-extrabold tracking-wider hidden">INTELLECTA</span>
+            </div>
+
+            <!-- ================= SECTION 1: GEN AI (Slides 1 - 20) ================= -->
+            
+            <!-- Slide 1: Title -->
+            <div class="slide dark-theme" id="slide-1">
+                <!-- Neural network background -->
+                <svg class="neural-background" viewBox="0 0 1000 600">
+                    <circle cx="100" cy="150" r="5" class="neural-node" />
+                    <circle cx="250" cy="100" r="4" class="neural-node" />
+                    <circle cx="200" cy="300" r="6" class="neural-node" />
+                    <circle cx="450" cy="200" r="5" class="neural-node" />
+                    <circle cx="600" cy="400" r="5" class="neural-node" />
+                    <circle cx="800" cy="150" r="4" class="neural-node" />
+                    <circle cx="750" cy="450" r="6" class="neural-node" />
+                    <circle cx="900" cy="350" r="5" class="neural-node" />
+                    
+                    <path d="M100 150 L250 100 L450 200 L200 300 L100 150 Z" fill="none" class="neural-line" />
+                    <path d="M450 200 L600 400 L750 450 L900 350 L800 150 L450 200 Z" fill="none" class="neural-line" />
+                    <path d="M200 300 L600 400 L800 150" fill="none" class="neural-line" />
+                </svg>
+
+                <div class="flex flex-col items-center justify-center h-full text-center z-10">
+                    <div class="teal-circle-badge w-24 h-24 mb-10 shadow-2xl animate-pulse">
+                        <i data-lucide="cpu" class="w-12 h-12"></i>
+                    </div>
+                    <h1 class="text-7xl font-extrabold tracking-tight mb-6 leading-tight text-white">The AI Advantage</h1>
+                    <p class="text-3xl text-slate-300 max-w-4xl font-light mb-16">Understanding, Building & Working with GenAI</p>
+                    <div class="inline-block px-8 py-4 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-lg font-medium">
+                        Presenter: Intellecta Leads | 15 July 2026
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: What is Gen AI? -->
+            <div class="slide" id="slide-2">
+                <div>
+                    <h2 class="slide-title">What is Gen AI?</h2>
+                    <p class="slide-subtitle">A fundamental paradigm shift from classification to creation.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-10 my-auto items-stretch">
+                    <!-- Traditional AI (Wipes in first) -->
+                    <div class="card flex flex-col justify-between h-96 border-t-8 border-t-slate-400 build-step wipe-left">
+                        <div>
+                            <div class="flex items-center space-x-5 mb-8">
+                                <div class="teal-circle-badge"><i data-lucide="filter" class="w-8 h-8"></i></div>
+                                <h3 class="text-3xl font-bold text-slate-800">Traditional AI</h3>
+                            </div>
+                            <p class="text-slate-600 text-xl leading-relaxed mb-6">Focuses on pattern recognition, classification, and predicting labels based on existing rules or data boundaries.</p>
+                        </div>
+                        <div class="bg-slate-100 p-5 rounded-xl border border-slate-200 text-base text-slate-500 font-mono">
+                            <span class="font-bold text-slate-700">Example:</span> Spam filter labeling an incoming email as "Spam" or "Inboxed".
+                        </div>
+                    </div>
+
+                    <!-- Generative AI (Wipes in second) -->
+                    <div class="card flex flex-col justify-between h-96 border-t-8 border-t-[#00C2A8] bg-gradient-to-br from-white to-teal-50/20 build-step wipe-left">
+                        <div>
+                            <div class="flex items-center space-x-5 mb-8">
+                                <div class="teal-circle-badge"><i data-lucide="sparkles" class="w-8 h-8"></i></div>
+                                <h3 class="text-3xl font-bold text-slate-800">Generative AI</h3>
+                            </div>
+                            <p class="text-slate-600 text-xl leading-relaxed mb-6">Learns underlying mathematical patterns to synthesize entirely new, creative artifacts matching the training domain.</p>
+                        </div>
+                        <div class="bg-teal-50/80 p-5 rounded-xl border border-teal-200 text-base text-teal-800 font-mono font-medium">
+                            <span class="font-bold">Example:</span> ChatGPT writing a custom email newsletter from a 3-word prompt.
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 4: How GenAI Works (Overview) -->
+            <div class="slide" id="slide-4">
+                <div>
+                    <h2 class="slide-title">How GenAI Works: The Core Loop</h2>
+                    <p class="slide-subtitle">From raw unstructured web data to predictive probability engines.</p>
+                </div>
+                
+                <div class="flex items-stretch space-x-10 my-auto px-4 relative">
+                    <!-- Step 1 -->
+                    <div class="flex-1 card flex flex-col items-center text-center p-8 build-step grow">
+                        <div class="teal-circle-badge w-20 h-20 mb-6"><i data-lucide="database" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">1. Massive Datasets</h3>
+                        <p class="text-slate-600 text-base leading-relaxed">Models ingest billions of public web pages, books, codes, and images to learn human language structure.</p>
+                    </div>
+
+                    <!-- Flow arrow 1 -->
+                    <div class="flex items-center justify-center build-step grow">
+                        <i data-lucide="arrow-right" class="w-12 h-12 text-[#00C2A8]"></i>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex-1 card flex flex-col items-center text-center p-8 build-step grow">
+                        <div class="teal-circle-badge w-20 h-20 mb-6"><i data-lucide="brain" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">2. Pattern Learning</h3>
+                        <p class="text-slate-600 text-base leading-relaxed">Instead of memorizing facts, models analyze mathematical weights and neural patterns mapping words to meanings.</p>
+                    </div>
+
+                    <!-- Flow arrow 2 -->
+                    <div class="flex items-center justify-center build-step grow">
+                        <i data-lucide="arrow-right" class="w-12 h-12 text-[#00C2A8]"></i>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex-1 card flex flex-col items-center text-center p-8 build-step grow">
+                        <div class="teal-circle-badge w-20 h-20 mb-6"><i data-lucide="zap" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">3. Token Prediction</h3>
+                        <p class="text-slate-600 text-base leading-relaxed">Generates final outputs step-by-step by constantly calculating the statistical probability of "what comes next".</p>
+                    </div>
+                </div>
+                <!-- Analogy overlay/banner -->
+                <div class="mt-8 bg-teal-50 border border-teal-200 p-5 rounded-xl flex items-center space-x-4 build-step grow">
+                    <div class="teal-circle-badge w-12 h-12 flex-shrink-0"><i data-lucide="lightbulb" class="w-6 h-6"></i></div>
+                    <p class="text-slate-700 text-lg">
+                        <strong>💡 Everyday Analogy: Smart Auto-Complete.</strong> Think of your phone's predictive keyboard guessing the next word as you type. Generative AI works on the exact same probability math—it just reviews the entire internet's context to predict pages of text, code, or images!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 6: What is an LLM & Types of LLMs -->
+            <div class="slide" id="slide-6">
+                <div>
+                    <h2 class="slide-title">What is an LLM & Types of LLMs</h2>
+                    <p class="slide-subtitle">Understanding the technology behind large language models and their core operational divisions.</p>
+                </div>
+                
+                <div class="grid grid-cols-12 gap-8 my-auto items-stretch grow pb-4">
+                    <!-- Left Column: What is an LLM (Visual Concept) -->
+                    <div class="col-span-5 flex flex-col">
+                        <div class="card p-8 flex flex-col justify-start space-y-6 h-full build-step grow">
+                            <div>
+                                <h3 class="text-2xl font-extrabold text-white mb-6 border-b pb-4 border-white/10 flex items-center space-x-2">
+                                    <i data-lucide="help-circle" class="w-6 h-6 text-[#3b82f6]"></i>
+                                    <span>What is an LLM?</span>
+                                </h3>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    A <strong>Large Language Model (LLM)</strong> is a deep learning system trained on billions of parameters. At its core, it is a <strong>supercharged prediction engine</strong> designed to guess the most statistically likely next word in a sequence.
+                                </p>
+                            </div>
+                            
+                            <!-- Visual Auto-Complete Prediction Widget -->
+                            <div class="bg-slate-900/60 border border-white/10 rounded-xl p-5 space-y-4">
+                                <span class="text-xs uppercase tracking-wider text-[#3b82f6] font-bold">Inference Probability Loop</span>
+                                <div class="bg-black/40 rounded p-3 font-mono text-sm border border-white/5 flex items-center">
+                                    <span class="text-slate-400 mr-2">Prompt:</span>
+                                    <span class="text-white">"The sun rises in the..."</span>
+                                    <span class="w-2 h-4 bg-white animate-pulse ml-1"></span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-between text-xs bg-white/5 px-3 py-1.5 rounded border border-[#3b82f6]/20">
+                                        <span class="font-mono text-sky-400">"east"</span>
+                                        <span class="font-bold text-slate-200">99.4% (Highest Probability)</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs bg-white/5 px-3 py-1.5 rounded border border-white/5">
+                                        <span class="font-mono text-slate-400">"morning"</span>
+                                        <span class="text-slate-400">0.4%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs bg-white/5 px-3 py-1.5 rounded border border-white/5">
+                                        <span class="font-mono text-slate-400">"sky"</span>
+                                        <span class="text-slate-400">0.2%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Types of LLMs -->
+                    <div class="col-span-7 flex flex-col justify-between space-y-4">
+                        <!-- Type 1: Proprietary -->
+                        <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#3b82f6] build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 flex-shrink-0 bg-white overflow-hidden p-1 flex items-center justify-center border border-[#3b82f6]/20">
+                                <img src="assets/chatgpt.png" alt="Proprietary" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#3b82f6]');">
+                                <i data-lucide="lock" class="w-6 h-6 text-white hidden"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Proprietary Models (Closed-Source)</h3>
+                                <p class="text-slate-400 text-sm mt-1 leading-relaxed">Natively hosted by providers, accessed via secure cloud APIs. Highly optimized for massive reasoning workloads (e.g., GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro).</p>
+                            </div>
+                        </div>
+
+                        <!-- Type 2: Open-Weights -->
+                        <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-slate-600 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 flex-shrink-0 bg-white overflow-hidden p-1 flex items-center justify-center border border-slate-600/20">
+                                <img src="assets/llama.png" alt="Open Weights" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-slate-600');">
+                                <i data-lucide="globe" class="w-6 h-6 text-white hidden"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Open-Weights Models (Local / Open-Source)</h3>
+                                <p class="text-slate-400 text-sm mt-1 leading-relaxed">Weights are downloadable and hostable on custom servers or local corporate GPUs, ensuring 100% data privacy and customization (e.g., Llama 3.1, Mistral, Gemma 2).</p>
+                            </div>
+                        </div>
+
+                        <!-- Type 3: Fine-Tuned -->
+                        <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-slate-600 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 flex-shrink-0"><i data-lucide="wrench" class="w-6 h-6 text-white"></i></div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Domain-Specific (Fine-Tuned) Models</h3>
+                                <p class="text-slate-400 text-sm mt-1 leading-relaxed">Foundation models specifically re-trained on narrow professional dataset corpora (medical, coding, financial, law) to handle specialized tasks with precision.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 7: Tokens: What is Tokenization? -->
+            <div class="slide" id="slide-7">
+                <div>
+                    <h2 class="slide-title">Intro to LLMs: What is Tokenization?</h2>
+                    <p class="slide-subtitle">Before reading or generating text, models segment words into numerical fragments.</p>
+                </div>
+                
+                <div class="my-auto flex flex-col space-y-8 max-w-6xl mx-auto w-full">
+                    <!-- Top Row: Visual Examples -->
+                    <div class="grid grid-cols-2 gap-8 items-stretch">
+                        <!-- Left: Example 1 (Standard Word) -->
+                        <div class="card p-6 border-t-4 border-t-[#3b82f6] flex flex-col justify-between build-step grow">
+                            <span class="text-xs uppercase tracking-wider text-[#3b82f6] font-bold mb-4 block">Example A: Sub-Word Split (Standard Word)</span>
+                            <div class="bg-slate-950/45 border border-white/10 rounded-xl p-4 space-y-4">
+                                <!-- Raw -->
+                                <div class="flex items-center justify-between text-sm bg-white/5 p-2 rounded">
+                                    <span class="text-slate-400">1. Input Word</span>
+                                    <span class="font-mono text-white font-bold">"tokenization"</span>
+                                </div>
+                                <!-- Split -->
+                                <div class="flex items-center justify-between text-sm bg-white/5 p-2 rounded">
+                                    <span class="text-slate-400">2. Split Pieces</span>
+                                    <div class="flex space-x-1.5 font-mono font-bold text-xs">
+                                        <span class="px-2 py-0.5 rounded bg-indigo-500/25 text-indigo-300 border border-indigo-500/40">token</span>
+                                        <span class="px-2 py-0.5 rounded bg-sky-500/25 text-sky-300 border border-sky-500/40">iz</span>
+                                        <span class="px-2 py-0.5 rounded bg-purple-500/25 text-purple-300 border border-purple-500/40">ation</span>
+                                    </div>
+                                </div>
+                                <!-- Token IDs -->
+                                <div class="flex items-center justify-between text-sm bg-white/5 p-2 rounded border border-[#3b82f6]/20">
+                                    <span class="text-slate-400">3. Token IDs</span>
+                                    <div class="flex space-x-1.5 font-mono font-bold text-xs">
+                                        <span class="px-2 py-0.5 rounded bg-indigo-950 text-indigo-200 border border-indigo-800/60">14562</span>
+                                        <span class="px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/60">321</span>
+                                        <span class="px-2 py-0.5 rounded bg-purple-950 text-purple-200 border border-purple-800/60">5091</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Example 2 (Brand / Custom Word) -->
+                        <div class="card p-6 border-t-4 border-t-[#38bdf8] flex flex-col justify-between build-step grow">
+                            <span class="text-xs uppercase tracking-wider text-[#38bdf8] font-bold mb-4 block">Example B: Compounded Names (Brand/Custom Text)</span>
+                            <div class="bg-slate-950/45 border border-white/10 rounded-xl p-4 space-y-4">
+                                <!-- Raw -->
+                                <div class="flex items-center justify-between text-sm bg-white/5 p-2 rounded">
+                                    <span class="text-slate-400">1. Input Word</span>
+                                    <span class="font-mono text-white font-bold">"SyntaxSyndicate"</span>
+                                </div>
+                                <!-- Split -->
+                                <div class="flex items-center justify-between text-sm bg-white/5 p-2 rounded">
+                                    <span class="text-slate-400">2. Split Pieces</span>
+                                    <div class="flex space-x-1.5 font-mono font-bold text-xs">
+                                        <span class="px-2 py-0.5 rounded bg-rose-500/25 text-rose-300 border border-rose-500/40">Syntax</span>
+                                        <span class="px-2 py-0.5 rounded bg-amber-500/25 text-amber-300 border border-amber-500/40">Synd</span>
+                                        <span class="px-2 py-0.5 rounded bg-emerald-500/25 text-emerald-300 border border-emerald-500/40">icate</span>
+                                    </div>
+                                </div>
+                                <!-- Token IDs -->
+                                <div class="flex items-center justify-between text-sm bg-white/5 p-2 rounded border border-[#38bdf8]/20">
+                                    <span class="text-slate-400">3. Token IDs</span>
+                                    <div class="flex space-x-1.5 font-mono font-bold text-xs">
+                                        <span class="px-2 py-0.5 rounded bg-rose-950 text-rose-200 border border-rose-800/60">38421</span>
+                                        <span class="px-2 py-0.5 rounded bg-amber-950 text-amber-200 border border-amber-800/60">14022</span>
+                                        <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-200 border border-emerald-800/60">6081</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Row: Token explanations (3 Cards) -->
+                    <div class="grid grid-cols-3 gap-6">
+                        <!-- Card 1 -->
+                        <div class="card p-5 build-step grow border-t-2 border-t-[#3b82f6]/40">
+                            <h4 class="font-bold text-white text-base mb-2 flex items-center space-x-2">
+                                <span>🧩 What is a Token?</span>
+                            </h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Word fragments or syllables. Models don't read words whole; they segment them into standard dictionary pieces to understand patterns.
+                            </p>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="card p-5 build-step grow border-t-2 border-t-[#3b82f6]/40">
+                            <h4 class="font-bold text-white text-base mb-2 flex items-center space-x-2">
+                                <span>📏 Rule of Thumb</span>
+                            </h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                <strong>1 Token ≈ 4 characters</strong> or <strong>0.75 English words</strong>. 100 tokens is roughly 75 English words.
+                            </p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="card p-5 build-step grow border-t-2 border-t-[#3b82f6]/40">
+                            <h4 class="font-bold text-white text-base mb-2 flex items-center space-x-2">
+                                <span>🌐 Vocabulary Index</span>
+                            </h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Each token corresponds to a unique number in the model's vocabulary list (usually containing 50,000 to 100,000+ entries).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 7b: Tokens & Prediction: The Core Loop -->
+            <div class="slide" id="slide-7b">
+                <div>
+                    <h2 class="slide-title">Intro to LLMs: Next-Token Prediction</h2>
+                    <p class="slide-subtitle">Models generate sentences step-by-step by calculating probability scores for the next token.</p>
+                </div>
+                
+                <div class="my-auto flex flex-col space-y-8 max-w-6xl mx-auto w-full">
+                    <!-- Top Row: Prediction Animation & Probability -->
+                    <div class="grid grid-cols-12 gap-8 items-stretch">
+                        <!-- Left: Tokens blocks -->
+                        <div class="col-span-7 card p-6 border-t-4 border-t-[#3b82f6] flex flex-col justify-between build-step grow">
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-400 mb-6 uppercase tracking-wider">Active Token Context</h3>
+                                <div class="flex flex-wrap gap-2.5 mb-8">
+                                    <span class="px-4 py-2.5 bg-slate-900/60 border border-white/10 rounded font-mono text-xl text-slate-200 build-step grow text-center">The</span>
+                                    <span class="px-4 py-2.5 bg-slate-900/60 border border-white/10 rounded font-mono text-xl text-slate-200 build-step grow text-center">sky</span>
+                                    <span class="px-4 py-2.5 bg-slate-900/60 border border-white/10 rounded font-mono text-xl text-slate-200 build-step grow text-center">is</span>
+                                    <span class="px-4 py-2.5 bg-slate-900/60 border border-white/10 rounded font-mono text-xl text-slate-200 build-step grow text-center">clear</span>
+                                    <span class="px-4 py-2.5 bg-slate-900/60 border border-white/10 rounded font-mono text-xl text-slate-200 build-step grow text-center">and</span>
+                                    <span class="px-4 py-2.5 bg-blue-900/20 text-[#3b82f6] border-2 border-[#3b82f6] rounded font-mono text-xl font-extrabold animate-bounce build-step grow text-center">blue</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 text-base leading-relaxed">
+                                Once the tokenizer converts text to IDs, the model reviews the entire context sequence to predict the single highest-probability next token.
+                            </p>
+                        </div>
+
+                        <!-- Right: Probability table -->
+                        <div class="col-span-5 card p-6 build-step grow flex flex-col justify-between">
+                            <h3 class="font-bold text-white text-lg mb-4">Next-Token Candidate List</h3>
+                            <div class="space-y-4 my-auto">
+                                <div class="flex items-center justify-between border-b pb-2.5 border-white/5">
+                                    <span class="font-mono text-white font-semibold">"blue"</span>
+                                    <span class="text-xs bg-[#3b82f6]/20 text-[#38bdf8] border border-[#3b82f6]/40 px-2 py-1 rounded font-bold">92.4% Probability</span>
+                                </div>
+                                <div class="flex items-center justify-between border-b pb-2.5 border-white/5">
+                                    <span class="font-mono text-slate-400">"gray"</span>
+                                    <span class="text-xs text-slate-400 font-semibold">3.8%</span>
+                                </div>
+                                <div class="flex items-center justify-between border-b pb-2.5 border-white/5">
+                                    <span class="font-mono text-slate-400">"cloudy"</span>
+                                    <span class="text-xs text-slate-400 font-semibold">1.5%</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-mono text-slate-400">"bright"</span>
+                                    <span class="text-xs text-slate-400 font-semibold">0.9%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Row: Prediction Concepts -->
+                    <div class="grid grid-cols-3 gap-6">
+                        <!-- Card 1 -->
+                        <div class="card p-5 build-step grow border-t-2 border-t-[#3b82f6]/40">
+                            <h4 class="font-bold text-white text-base mb-2 flex items-center space-x-2">
+                                <span>🔄 Autoregressive Loop</span>
+                            </h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Models generate text one token at a time. Once a token is selected, it is appended to the prompt, and the model runs again to predict the next token.
+                            </p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="card p-5 build-step grow border-t-2 border-t-[#3b82f6]/40">
+                            <h4 class="font-bold text-white text-base mb-2 flex items-center space-x-2">
+                                <span>🎲 Probability Score Rankings</span>
+                            </h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                The model outputs mathematical weights for every token in its dictionary. The highest scores represent the most logical sentence completions.
+                            </p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="card p-5 build-step grow border-t-2 border-t-[#3b82f6]/40">
+                            <h4 class="font-bold text-white text-base mb-2 flex items-center space-x-2">
+                                <span>🌡️ Temperature Controls</span>
+                            </h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Slide controllers that adjust prediction randomness. Lower temperature = predictable Copywriter; higher temperature = creative Storyteller.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 8: LLM Architecture (Transformer) -->
+            <div class="slide" id="slide-8">
+                <div>
+                    <h2 class="slide-title">LLM Architecture: The Transformer</h2>
+                    <p class="slide-subtitle">The groundbreaking deep learning architecture introduced in 2017.</p>
+                </div>
+                
+                <div class="grid grid-cols-12 gap-8 my-auto items-stretch grow pb-4">
+                    <!-- Left: Explanations inside a unified stack card -->
+                    <div class="col-span-5 flex flex-col">
+                        <div class="card p-8 flex flex-col justify-start space-y-6 h-full float-up">
+                            <h3 class="text-2xl font-extrabold text-white border-b pb-4 border-white/10 flex items-center space-x-2">
+                                <i data-lucide="cpu" class="w-6 h-6 text-[#3b82f6]"></i>
+                                <span>Key Processing Layers</span>
+                            </h3>
+                            
+                            <!-- Layer 1: Input -->
+                            <div class="flex items-start space-x-4 border-l-4 border-l-slate-600 pl-4 py-2 build-step float-up">
+                                <div class="teal-circle-badge bg-slate-500 w-8 h-8 mt-0.5"><i data-lucide="database" class="w-4 h-4 text-white"></i></div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">1. Input Embedding Layer</h4>
+                                    <p class="text-slate-400 text-xs mt-1 leading-relaxed">Ingests raw text and projects tokens into multi-dimensional numerical coordinate vectors.</p>
+                                </div>
+                            </div>
+
+                            <!-- Layer 2: Transformer Blocks -->
+                            <div class="flex items-start space-x-4 border-l-4 border-l-[#3b82f6] pl-4 py-2 build-step float-up">
+                                <div class="teal-circle-badge w-8 h-8 mt-0.5"><i data-lucide="layers" class="w-4 h-4 text-white"></i></div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">2. Transformer Blocks (Self-Attention)</h4>
+                                    <p class="text-slate-400 text-xs mt-1 leading-relaxed">Processes relations between all words simultaneously, extracting contextual and reasoning pathways.</p>
+                                </div>
+                            </div>
+
+                            <!-- Layer 3: Output -->
+                            <div class="flex items-start space-x-4 border-l-4 border-l-slate-600 pl-4 py-2 build-step float-up">
+                                <div class="teal-circle-badge bg-slate-500 w-8 h-8 mt-0.5"><i data-lucide="arrow-up-right" class="w-4 h-4 text-white"></i></div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">3. Output Layer</h4>
+                                    <p class="text-slate-400 text-xs mt-1 leading-relaxed">Converts mathematical vectors back into human-readable text tokens.</p>
+                                </div>
+                            </div>
+
+                            <!-- Key Breakthrough Takeaway (fills empty height) -->
+                            <div class="mt-auto bg-[#3b82f6]/10 border border-[#3b82f6]/30 p-4 rounded-lg text-xs leading-relaxed text-slate-300 build-step float-up">
+                                <strong>💡 Technical Breakthrough:</strong> By processing entire sentences simultaneously (instead of word-by-word like older RNN networks), the Transformer unlocked massive computing parallelization, directly enabling today's internet-scale GenAI revolution.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Actual Transformer Diagram (Much Larger) -->
+                    <div class="col-span-7 flex flex-col">
+                        <div class="card p-6 flex items-center justify-center h-full bg-white/5 border border-white/10 rounded-xl build-step float-up">
+                            <img src="assets/transformer.png" alt="Transformer Architecture Diagram" class="max-h-[35rem] w-auto object-contain rounded-lg shadow-2xl bg-white p-3">
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 9: Attention Mechanism -->
+            <div class="slide" id="slide-9">
+                <div>
+                    <h2 class="slide-title">LLM Architecture: Attention Mechanism</h2>
+                    <p class="slide-subtitle">Attention allows models to dynamically weigh relationships between words regardless of distance.</p>
+                </div>
+                
+                <div class="my-auto flex flex-col space-y-6 max-w-6xl mx-auto w-full">
+                    <div class="grid grid-cols-12 gap-8 items-stretch">
+                        <!-- Left: Sentence Context Card -->
+                        <div class="col-span-7 card p-8 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-400 mb-6 uppercase tracking-wider text-left">Resolving Contextual Ambiguity</h3>
+                                
+                                <div class="text-lg font-mono bg-slate-950/40 p-8 rounded-xl border border-white/10 mb-6 text-white relative h-36 flex items-center justify-center whitespace-nowrap">
+                                    <!-- SVG curved line connection -->
+                                    <svg class="draw-line-svg" viewBox="0 0 800 100">
+                                        <defs>
+                                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                                <feGaussianBlur stdDeviation="3" result="blur" />
+                                                <feMerge>
+                                                    <feMergeNode in="blur" />
+                                                    <feMergeNode in="SourceGraphic" />
+                                                </feMerge>
+                                            </filter>
+                                        </defs>
+                                        <path d="M 640,85 C 500,20 200,20 135,85" class="connection-path" filter="url(#glow)" />
+                                        <circle r="5.5" fill="#38bdf8" class="attention-glow-dot">
+                                            <animateMotion dur="2.2s" repeatCount="indefinite" path="M 640,85 C 500,20 200,20 135,85" />
+                                        </circle>
+                                    </svg>
+                                    The <span class="bg-[#3b82f6]/15 text-[#38bdf8] border border-[#3b82f6]/30 px-3 py-1 rounded-lg font-bold transition-all duration-500" id="attn-cat">cat</span> sat on the mat because <span class="bg-[#3b82f6]/15 text-[#38bdf8] border border-[#3b82f6]/30 px-3 py-1 rounded-lg font-bold transition-all duration-500 animate-pulse" id="attn-it">it</span> was tired.
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4 text-left bg-[#3b82f6]/5 p-6 rounded-xl border border-white/5 build-step grow">
+                                <div class="teal-circle-badge w-10 h-10 mt-1 flex-shrink-0"><i data-lucide="info" class="w-5 h-5 text-white"></i></div>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    Self-attention maps mathematical correlation values between <strong>"it"</strong> and <strong>"cat"</strong>. Unlike traditional engines that read word-by-word sequentially, self-attention links semantic relationships globally across the entire sequence.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right: Attention Score Matrix Card -->
+                        <div class="col-span-5 card p-8 build-step grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-400 mb-6 uppercase tracking-wider text-left">Attention Score Distribution</h3>
+                                <div class="space-y-4 my-auto">
+                                    <!-- cat -->
+                                    <div class="space-y-1.5">
+                                        <div class="flex justify-between text-sm font-semibold">
+                                            <span class="text-white">😺 cat</span>
+                                            <span class="text-[#38bdf8] font-extrabold">85% (Strong Connection)</span>
+                                        </div>
+                                        <div class="w-full bg-slate-900 border border-white/5 rounded-full h-2">
+                                            <div class="bg-gradient-to-r from-blue-500 to-sky-400 h-2 rounded-full shadow-lg" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- tired -->
+                                    <div class="space-y-1.5">
+                                        <div class="flex justify-between text-sm font-semibold">
+                                            <span class="text-slate-300">💤 tired</span>
+                                            <span class="text-slate-300 font-bold">12%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-900 border border-white/5 rounded-full h-2">
+                                            <div class="bg-slate-600 h-2 rounded-full" style="width: 12%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- mat -->
+                                    <div class="space-y-1.5">
+                                        <div class="flex justify-between text-sm font-semibold">
+                                            <span class="text-slate-400">🏠 mat</span>
+                                            <span class="text-slate-400 font-bold">2%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-900 border border-white/5 rounded-full h-2">
+                                            <div class="bg-slate-700 h-2 rounded-full" style="width: 2%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- others -->
+                                    <div class="space-y-1.5">
+                                        <div class="flex justify-between text-sm font-semibold">
+                                            <span class="text-slate-500">🌐 others</span>
+                                            <span class="text-slate-500 font-bold">1%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-900 border border-white/5 rounded-full h-2">
+                                            <div class="bg-slate-800 h-2 rounded-full" style="width: 1%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[11.5px] text-slate-400 italic mt-6 border-t border-white/5 pt-3">
+                                💡 The model learns that "it" stands for the "cat" because of context clues like "tired".
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Analogy Banner -->
+                    <div class="bg-slate-950/40 border border-white/10 p-5 rounded-xl flex items-center space-x-4 build-step grow">
+                        <div class="teal-circle-badge w-12 h-12 flex-shrink-0"><i data-lucide="highlighter" class="w-6 h-6 text-white"></i></div>
+                        <p class="text-slate-300 text-base leading-relaxed">
+                            <strong>💡 The Highlighter Analogy:</strong> When humans read <em>"The trophy didn't fit in the suitcase because <strong>it</strong> was too big,"</em> we instantly associate "it" with the trophy. Attention mathematically "highlights" related words so the model doesn't lose track of pronouns in long sentences.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Foundations -->
+            <div class="slide" id="slide-10">
+                <div>
+                    <h2 class="slide-title">Foundations: AI vs. ML vs. DL vs. GenAI</h2>
+                    <p class="slide-subtitle">Understanding where Generative AI fits within the broader history of computer science.</p>
+                </div>
+                
+                <div class="my-auto grid grid-cols-12 gap-10 items-center">
+                    <div class="col-span-6 flex justify-center py-6">
+                        <!-- Concentric circles -->
+                        <div id="ring-ai" class="concentric-ring w-96 h-96 bg-slate-100/5 relative">
+                            <span class="absolute top-4 font-bold text-xs uppercase tracking-wider text-slate-400">Artificial Intelligence</span>
+                            <div id="ring-ml" class="concentric-ring w-80 h-80 bg-slate-200/5 relative">
+                                <span class="absolute top-4 font-bold text-xs uppercase tracking-wider text-slate-500">Machine Learning</span>
+                                <div id="ring-dl" class="concentric-ring w-60 h-60 bg-slate-300/5 relative">
+                                    <span class="absolute top-3 font-bold text-[10px] uppercase tracking-wider text-slate-600">Deep Learning</span>
+                                    <div id="ring-genai" class="concentric-ring w-36 h-36 bg-[#00C2A8] text-white font-extrabold text-lg shadow-xl text-center p-2">
+                                        Gen AI
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-span-6 space-y-4">
+                        <div class="card p-4 flex items-center space-x-4 build-step grow">
+                            <div class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Artificial Intelligence (AI)</h4>
+                                <p class="text-xs text-slate-500">The broad science of engineering machines to mimic human intelligence.</p>
+                            </div>
+                        </div>
+                        <div class="card p-4 flex items-center space-x-4 build-step grow">
+                            <div class="w-3 h-3 rounded-full bg-slate-500 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Machine Learning (ML)</h4>
+                                <p class="text-xs text-slate-500">Algorithms that parse data to learn statistical decisions dynamically.</p>
+                            </div>
+                        </div>
+                        <div class="card p-4 flex items-center space-x-4 build-step grow">
+                            <div class="w-3 h-3 rounded-full bg-slate-600 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Deep Learning (DL)</h4>
+                                <p class="text-xs text-slate-500">ML utilizing deep artificial neural network layered stacks.</p>
+                            </div>
+                        </div>
+                        <div class="card p-4 flex items-center space-x-4 border-l-4 border-l-[#00C2A8] build-step grow">
+                            <div class="w-3 h-3 rounded-full bg-[#00C2A8] flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Generative AI</h4>
+                                <p class="text-xs text-slate-500">DL networks specialized in synthesizing completely new structured output artifacts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 11: Evolution Timeline -->
+            <div class="slide" id="slide-11">
+                <div>
+                    <h2 class="slide-title">Evolution Timeline of AI</h2>
+                    <p class="slide-subtitle">From rigid rule engines to autonomous reasoning systems.</p>
+                </div>
+                
+                <div class="flex my-auto w-full py-8 overflow-hidden">
+                    <!-- Rule based -->
+                    <div class="flex-1 relative pt-12 build-step grow">
+                        <div class="absolute top-0 left-0 right-0 flex items-center">
+                            <div class="teal-circle-badge w-12 h-12 text-sm font-bold z-10">1980</div>
+                            <div class="h-1 bg-slate-200 flex-1 -ml-2"></div>
+                        </div>
+                        <div class="card p-5 mt-4 mr-4 h-48">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">Rule-Based</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Expert systems relying on hardcoded lists of if-then-else logical statements.</p>
+                        </div>
+                    </div>
+
+                    <!-- Machine Learning -->
+                    <div class="flex-1 relative pt-12 build-step grow">
+                        <div class="absolute top-0 left-0 right-0 flex items-center">
+                            <div class="teal-circle-badge w-12 h-12 text-sm font-bold z-10">1990</div>
+                            <div class="h-1 bg-slate-200 flex-1 -ml-2"></div>
+                        </div>
+                        <div class="card p-5 mt-4 mr-4 h-48">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">Machine Learning</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Statistical frameworks like classification trees, regression algorithms learning from structured databases.</p>
+                        </div>
+                    </div>
+
+                    <!-- Deep Learning -->
+                    <div class="flex-1 relative pt-12 build-step grow">
+                        <div class="absolute top-0 left-0 right-0 flex items-center">
+                            <div class="teal-circle-badge w-12 h-12 text-sm font-bold z-10">2012</div>
+                            <div class="h-1 bg-slate-200 flex-1 -ml-2"></div>
+                        </div>
+                        <div class="card p-5 mt-4 mr-4 h-48">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">Deep Learning</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Layered artificial neural networks processing raw media features (AlexNet ImageNet era).</p>
+                        </div>
+                    </div>
+
+                    <!-- Transformers -->
+                    <div class="flex-1 relative pt-12 build-step grow">
+                        <div class="absolute top-0 left-0 right-0 flex items-center">
+                            <div class="teal-circle-badge w-12 h-12 text-sm font-bold z-10">2017</div>
+                            <div class="h-1 bg-[#00C2A8] flex-1 -ml-2"></div>
+                        </div>
+                        <div class="card border-t-4 border-t-[#00C2A8] p-5 mt-4 mr-4 h-48">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">Transformers</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Google introduces Attention. Enabling mass scale models to learn context globally.</p>
+                        </div>
+                    </div>
+
+                    <!-- ChatGPT -->
+                    <div class="flex-1 relative pt-12 build-step grow">
+                        <div class="absolute top-0 left-0 right-0 flex items-center">
+                            <div class="teal-circle-badge w-12 h-12 text-sm font-bold z-10">2022</div>
+                            <div class="h-1 bg-[#00C2A8] flex-1 -ml-2"></div>
+                        </div>
+                        <div class="card border-t-4 border-t-[#00C2A8] p-5 mt-4 mr-4 h-48 bg-teal-50/10">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">ChatGPT Era</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">GenAI enters mainstream consciousness, democratizing natural language software controls.</p>
+                        </div>
+                    </div>
+
+                    <!-- Multimodal -->
+                    <div class="flex-1 relative pt-12 build-step grow">
+                        <div class="absolute top-0 left-0 right-0 flex items-center">
+                            <div class="teal-circle-badge w-12 h-12 text-sm font-bold z-10">2026</div>
+                        </div>
+                        <div class="card border-t-4 border-t-[#00C2A8] p-5 mt-4 h-48 bg-teal-50/20">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">Cognitive Agents</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Modern networks executing full tasks cross-modal (sight, sound, click automation).</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 12: Prompting (What & Why) -->
+            <div class="slide" id="slide-12">
+                <div>
+                    <h2 class="slide-title">Prompting: What & Why</h2>
+                    <p class="slide-subtitle">A prompt is the instruction input. Better engineering directs higher fidelity output.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-10 my-auto">
+                    <!-- Left: Vague prompt bubble -->
+                    <div class="space-y-6">
+                        <div class="speech-bubble border-slate-300 bg-slate-50 text-slate-600 build-step grow">
+                            <h4 class="font-bold text-sm text-slate-400 uppercase mb-1">Vague Prompt Input</h4>
+                            "Write about dogs."
+                        </div>
+                        <div class="card p-6 border-l-4 border-l-slate-400 opacity-60 build-step grow">
+                            <h5 class="font-bold text-slate-500 mb-2">Weak Output Result</h5>
+                            <p class="text-sm text-slate-500">"Dogs are domesticated mammals. They are canines and have been human companions for centuries..."</p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Detailed prompt bubble -->
+                    <div class="space-y-6">
+                        <div class="speech-bubble border-teal-300 bg-teal-50/20 text-slate-800 build-step grow">
+                            <h4 class="font-bold text-sm text-teal-600 uppercase mb-1">Engineered Prompt Input</h4>
+                            "Write a 100-word engaging Instagram post about rescue dogs. Use 3 emojis and include a clear call-to-action for local shelters."
+                        </div>
+                        <div class="card p-6 border-l-4 border-l-[#00C2A8] bg-teal-50/5 build-step grow">
+                            <h5 class="font-bold text-teal-800 mb-2">Strong Optimized Output</h5>
+                            <p class="text-sm text-slate-700">"🐶 Looking for a new best friend? Rescue dogs fill our lives with pure joy. Adoption saves lives! Check out your local shelter today to meet your match. ❤️ #AdoptDontShop"</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 13: Prompting Techniques -->
+            <div class="slide" id="slide-13">
+                <div>
+                    <h2 class="slide-title">Core Prompting Techniques</h2>
+                    <p class="slide-subtitle">Proven frameworks to improve logical accuracy and output formatting.</p>
+                </div>
+                
+                <div class="flex space-x-8 my-auto">
+                    <div class="flex-1 card p-8 flex flex-col justify-between h-96 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="zap" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">Zero-Shot</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Directly asking the model to complete a task without feeding any input-output examples beforehand.</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-200 text-xs font-mono text-slate-500">"Translate 'hello' to French."</div>
+                    </div>
+
+                    <div class="flex-1 card p-8 flex flex-col justify-between h-96 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="list-checks" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">Few-Shot</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Providing 2-3 explicit example structures first to format the style before asking the target query.</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-200 text-xs font-mono text-slate-500">"Apple -> Fruit | Carrot -> Veg | Broccoli -> ___"</div>
+                    </div>
+
+                    <div class="flex-1 card p-8 flex flex-col justify-between h-96 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="git-merge" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">Chain-of-Thought</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Instructing the model to "think step-by-step" to break down mathematical and logical steps sequentially.</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-200 text-xs font-mono text-slate-500">"Let's trace this logic step-by-step: 1. ..."</div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 13b: How to Write the Perfect Prompt -->
+            <div class="slide" id="slide-13b">
+                <div>
+                    <h2 class="slide-title">How to Write the Perfect Prompt</h2>
+                    <p class="slide-subtitle">A general formula to guide LLMs toward high-fidelity, deterministic outputs in four steps.</p>
+                </div>
+                
+                <div class="my-auto grid grid-cols-4 gap-6 w-full max-w-6xl mx-auto items-stretch">
+                    <!-- Step 1: Persona -->
+                    <div class="card p-6 border-t-4 border-t-[#3b82f6] flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-[#3b82f6]/10 flex items-center justify-center text-[#38bdf8] font-bold mb-4">1</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Assign a Persona</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">Define "who" the AI is. Setting a role anchors the vocabulary and expertise range.</p>
+                        </div>
+                        <div class="bg-slate-950/80 border border-white/10 p-3.5 rounded-lg font-mono text-[13px] text-[#38bdf8] font-medium leading-relaxed">
+                            "Act as a senior DevOps engineer auditing a database cluster..."
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Context -->
+                    <div class="card p-6 border-t-4 border-t-[#3b82f6] flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-[#3b82f6]/10 flex items-center justify-center text-[#38bdf8] font-bold mb-4">2</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Provide Context</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">Explain the "what" and "why". Give background details, target audience, and raw data.</p>
+                        </div>
+                        <div class="bg-slate-950/80 border border-white/10 p-3.5 rounded-lg font-mono text-[13px] text-[#38bdf8] font-medium leading-relaxed">
+                            "We recently migrated our user registry to PostgreSQL and noticed latency peaks..."
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Constraints -->
+                    <div class="card p-6 border-t-4 border-t-[#3b82f6] flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-[#3b82f6]/10 flex items-center justify-center text-[#38bdf8] font-bold mb-4">3</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Set Constraints</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">Establish boundaries. Specify what to avoid, length constraints, or styling rules.</p>
+                        </div>
+                        <div class="bg-slate-950/80 border border-white/10 p-3.5 rounded-lg font-mono text-[13px] text-[#38bdf8] font-medium leading-relaxed">
+                            "Do not modify the table index schema. Keep the audit report under 250 words..."
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Output Format -->
+                    <div class="card p-6 border-t-4 border-t-[#38bdf8] flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-[#38bdf8]/10 flex items-center justify-center text-[#38bdf8] font-bold mb-4">4</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Format Output</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">Dictate the response schema. Request JSON blocks, Markdown, lists, or spreadsheets.</p>
+                        </div>
+                        <div class="bg-slate-950/80 border border-white/10 p-3.5 rounded-lg font-mono text-[13px] text-[#38bdf8] font-medium leading-relaxed">
+                            "Output as a markdown table with 'Query Type', 'Latency', and 'Action' columns."
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 13c: The Agentic Loop -->
+            <div class="slide" id="slide-13c">
+                <div>
+                    <h2 class="slide-title">The Agentic Loop: Self-Correction & Reflection</h2>
+                    <p class="slide-subtitle">Beyond single-shot prompts: how agents review, correct, and refine their own outputs recursively.</p>
+                </div>
+                
+                <div class="my-auto flex flex-col space-y-6 max-w-6xl mx-auto w-full">
+                    <!-- Visual Loop Diagram Container -->
+                    <div class="bg-slate-950/20 border border-white/5 p-6 rounded-2xl relative overflow-hidden flex flex-col space-y-4">
+                        <div class="grid grid-cols-11 gap-3 items-center">
+                            <!-- Step 1: Execute -->
+                            <div class="col-span-2 card p-5 text-center flex flex-col items-center justify-between min-h-[16rem] border-t-4 border-t-[#3b82f6] build-step grow">
+                                <div class="teal-circle-badge w-12 h-12 mb-4 bg-slate-800"><i data-lucide="play" class="w-6 h-6 text-white"></i></div>
+                                <h3 class="text-base font-bold text-white mb-2">1. Execution</h3>
+                                <p class="text-slate-300 text-[13px] leading-normal">Agent attempts the task, generating code, plans, or documents based on raw prompts.</p>
+                            </div>
+
+                            <!-- Arrow 1 -->
+                            <div class="col-span-1 flex justify-center build-step grow">
+                                <i data-lucide="arrow-right" class="w-8 h-8 text-[#38bdf8]"></i>
+                            </div>
+
+                            <!-- Step 2: Evaluate -->
+                            <div class="col-span-2 card p-5 text-center flex flex-col items-center justify-between min-h-[16rem] border-t-4 border-t-[#3b82f6] build-step grow">
+                                <div class="teal-circle-badge w-12 h-12 mb-4 bg-slate-800"><i data-lucide="check-square" class="w-6 h-6 text-white"></i></div>
+                                <h3 class="text-base font-bold text-white mb-2">2. Evaluation</h3>
+                                <p class="text-slate-300 text-[13px] leading-normal">Outputs are validated against constraints (e.g., test compilers, schema parsers).</p>
+                            </div>
+
+                            <!-- Arrow 2 -->
+                            <div class="col-span-1 flex justify-center build-step grow">
+                                <i data-lucide="arrow-right" class="w-8 h-8 text-[#38bdf8]"></i>
+                            </div>
+
+                            <!-- Step 3: Reflect -->
+                            <div class="col-span-2 card p-5 text-center flex flex-col items-center justify-between min-h-[16rem] border-t-4 border-t-[#3b82f6] build-step grow">
+                                <div class="teal-circle-badge w-12 h-12 mb-4 bg-slate-800"><i data-lucide="help-circle" class="w-6 h-6 text-white"></i></div>
+                                <h3 class="text-base font-bold text-white mb-2">3. Reflection</h3>
+                                <p class="text-slate-300 text-[13px] leading-normal">The model analyzes any compile failures, error stack logs, or missing requirements.</p>
+                            </div>
+
+                            <!-- Arrow 3 -->
+                            <div class="col-span-1 flex justify-center build-step grow">
+                                <i data-lucide="arrow-right" class="w-8 h-8 text-[#38bdf8]"></i>
+                            </div>
+
+                            <!-- Step 4: Refine -->
+                            <div class="col-span-2 card p-5 text-center flex flex-col items-center justify-between min-h-[16rem] border-2 border-[#38bdf8] bg-[#3b82f6]/10 build-step grow">
+                                <div class="teal-circle-badge w-12 h-12 mb-4"><i data-lucide="refresh-cw" class="w-6 h-6 text-white animate-spin"></i></div>
+                                <h3 class="text-base font-bold text-white mb-2">4. Refinement</h3>
+                                <p class="text-slate-300 text-[13px] leading-normal">Agent updates its weights/prompt context and runs again, looping until standard criteria is met.</p>
+                            </div>
+                        </div>
+
+                        <!-- SVG return loop curve -->
+                        <div class="relative w-full h-12 mt-2 build-step grow">
+                            <svg class="w-full h-full overflow-visible" viewBox="0 0 1000 40">
+                                <path d="M 880,5 C 880,45 120,45 120,5" fill="none" stroke="#38bdf8" stroke-dasharray="6,4" stroke-width="2.5" />
+                                <polygon points="115,12 120,0 125,12" fill="#38bdf8" />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="bg-[#0b0f19] border border-[#3b82f6]/40 px-4 py-1.5 rounded-full text-xs font-bold text-[#38bdf8] shadow-lg flex items-center space-x-1">
+                                    <span>🔄 Loop back with reflection log (Iterate until specific requirements are met)</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory note -->
+                    <div class="bg-slate-950/40 border border-white/10 p-5 rounded-xl flex items-center space-x-4 build-step grow">
+                        <div class="teal-circle-badge w-12 h-12 flex-shrink-0"><i data-lucide="repeat" class="w-6 h-6 text-white"></i></div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            <strong>🔄 Why This Matters:</strong> LLMs are prone to one-shot errors. By wrapping them in a **reflection cycle**—where the output is compiled, verified for errors, and re-fed as context—agents can self-correct their own bugs and work autonomously until the objective is reached.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="slide" id="slide-14">
+                <div>
+                    <h2 class="slide-title">The Knowledge Cutoff & Hallucination Problem</h2>
+                    <p class="slide-subtitle">Why static model weights require real-time information retrieval bridges.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-10 my-auto items-stretch">
+                    <!-- Fixed brain -->
+                    <div class="card flex flex-col justify-between p-8 border-l-8 border-l-slate-400 build-step wipe-left">
+                        <div class="flex items-start space-x-6">
+                            <div class="teal-circle-badge bg-slate-400"><i data-lucide="lock" class="w-8 h-8"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">Fixed Parametric Memory</h3>
+                                <p class="text-slate-600 text-base leading-relaxed">Models only know what they read in their training data prior to training. They are completely blind to current news, private company files, or API updates.</p>
+                            </div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded border border-red-100 text-sm text-red-800 font-semibold mt-6">
+                            ⚠️ Risk: High chances of "Hallucinating" plausible-sounding lies.
+                        </div>
+                    </div>
+
+                    <!-- Retrieval glass -->
+                    <div class="card flex flex-col justify-between p-8 border-l-8 border-l-[#00C2A8] bg-teal-50/5 build-step wipe-left">
+                        <div class="flex items-start space-x-6">
+                            <div class="teal-circle-badge"><i data-lucide="search" class="w-8 h-8"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">Active Semantic Retrieval</h3>
+                                <p class="text-slate-600 text-base leading-relaxed">Searching dynamic external databases (documents, web APIs) and feeding relevant text snippets directly into the prompt before generating.</p>
+                            </div>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded border border-teal-100 text-sm text-teal-800 font-semibold mt-6">
+                            ✅ Result: Truth-grounded answers citing verifiable reference sources.
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+
+
+            <!-- Slide 16: Prompting vs RAG vs Fine-Tuning -->
+            <div class="slide" id="slide-16">
+                <div>
+                    <h2 class="slide-title">Prompting vs. RAG vs. Fine-Tuning</h2>
+                    <p class="slide-subtitle">Strategic decision framework for choosing the right custom LLM deployment architecture.</p>
+                </div>
+                
+                <div class="my-auto overflow-hidden rounded-xl border border-slate-200 shadow-xl bg-white build-step wipe-left">
+                    <table class="w-full border-collapse comp-table text-lg">
+                        <thead>
+                            <tr class="text-white">
+                                <th class="py-5 px-8 text-left font-bold uppercase tracking-wider">Strategy</th>
+                                <th class="py-5 px-8 text-left font-bold uppercase tracking-wider">Setup Cost & Time</th>
+                                <th class="py-5 px-8 text-left font-bold uppercase tracking-wider">Ideal Use Case</th>
+                                <th class="py-5 px-8 text-left font-bold uppercase tracking-wider">Core Benefit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-slate-200 hover:bg-slate-50">
+                                <td class="py-6 px-8 font-bold text-slate-800">Prompt Engineering</td>
+                                <td class="py-6 px-8 text-slate-600">Minutes / Free</td>
+                                <td class="py-6 px-8 text-slate-600">General utility tasks, drafts, initial prototyping.</td>
+                                <td class="py-6 px-8 text-slate-800 font-semibold">Immediate deployment, zero dev setup.</td>
+                            </tr>
+                            <tr class="border-b border-slate-200 hover:bg-slate-50">
+                                <td class="py-6 px-8 font-bold text-slate-800">RAG (Retrieval)</td>
+                                <td class="py-6 px-8 text-slate-600">Days / Moderate</td>
+                                <td class="py-6 px-8 text-slate-600">Querying dynamic corporate knowledge bases and databases.</td>
+                                <td class="py-6 px-8 text-teal-600 font-semibold">Zero hallucinations, sources citation.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-6 px-8 font-bold text-slate-800">Fine-Tuning</td>
+                                <td class="py-6 px-8 text-slate-600">Weeks / Expensive</td>
+                                <td class="py-6 px-8 text-slate-600">Niche behaviors, highly specific output formatting, style replication.</td>
+                                <td class="py-6 px-8 text-slate-800 font-semibold">Native behavioral transformation.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 17: The Generative AI Modalities & Tools -->
+            <div class="slide" id="slide-17">
+                <div>
+                    <h2 class="slide-title">The Generative AI Modalities & Tools</h2>
+                    <p class="slide-subtitle">A comprehensive landscape of industry-leading engines across core digital medium types.</p>
+                </div>
+                
+                <div class="grid grid-cols-5 gap-5 items-stretch w-full max-w-6xl mx-auto my-auto">
+                    <!-- Text & Logic -->
+                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
+                        <div>
+                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="file-text" class="w-5 h-5 text-white"></i></div>
+                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Text & Logic</h3>
+                            <div class="space-y-3">
+                                <!-- Tool 1 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/claude.png" alt="Claude" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="shield-check" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Claude 3.5</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Reasoning & Coding</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 2 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/chatgpt.png" alt="GPT-4o" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="message-square" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">GPT-4o</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Speed & Multimodality</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 3 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/gemini.png" alt="Gemini Pro" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="sparkles" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Gemini Pro</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">2M Token Context</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
+                            Semantic Logic
+                        </div>
+                    </div>
+
+                    <!-- Image Synthesis -->
+                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
+                        <div>
+                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="palette" class="w-5 h-5 text-white"></i></div>
+                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Image Synthesis</h3>
+                            <div class="space-y-3">
+                                <!-- Tool 1 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/midjourney.png" alt="Midjourney" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="palette" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Midjourney</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Cinematic Artistry</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 2 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/dalle.png" alt="DALL-E 3" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="image" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">DALL-E 3</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Prompt Adherence</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 3 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/adobe-firefly.png" alt="Adobe Firefly" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="shield" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Adobe Firefly</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Commercial Safety</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
+                            Visual Rendition
+                        </div>
+                    </div>
+
+                    <!-- Video & Motion -->
+                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
+                        <div>
+                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="film" class="w-5 h-5 text-white"></i></div>
+                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Video & Motion</h3>
+                            <div class="space-y-3">
+                                <!-- Tool 1 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/runway.png" alt="Runway Gen-3" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="video" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Runway Gen-3</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Camera Vector Control</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 2 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/sora.png" alt="OpenAI Sora" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="film" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">OpenAI Sora</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Physics-Based 3D</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 3 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/pika.png" alt="Pika Labs" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="play-circle" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Pika Labs</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Fast Localized Clip</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
+                            Temporal Physics
+                        </div>
+                    </div>
+
+                    <!-- Software Dev -->
+                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
+                        <div>
+                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="code" class="w-5 h-5 text-white"></i></div>
+                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Software Dev</h3>
+                            <div class="space-y-3">
+                                <!-- Tool 1 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/curser.png" alt="Cursor Editor" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="code" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Cursor Editor</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Agentic Refactoring</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 2 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/copilot.png" alt="GitHub Copilot" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="terminal" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">GitHub Copilot</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Context Autocomplete</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 3 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/bolt.png" alt="Bolt.new" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="zap" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Bolt.new</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Sandbox Deployments</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
+                            Agentic Coding
+                        </div>
+                    </div>
+
+                    <!-- Voice & Audio -->
+                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
+                        <div>
+                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="headphones" class="w-5 h-5 text-white"></i></div>
+                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Voice & Audio</h3>
+                            <div class="space-y-3">
+                                <!-- Tool 1 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/elevenlabs.png" alt="ElevenLabs" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="mic" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">ElevenLabs</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Realistic Cloning</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 2 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/suno.png" alt="Suno Music" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="music" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Suno Music</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Full Compositions</p>
+                                    </div>
+                                </div>
+                                <!-- Tool 3 -->
+                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/udio.png" alt="Udio" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="headphones" class="w-4 h-4 text-slate-800 hidden"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-[11px] text-white truncate">Udio</h4>
+                                        <p class="text-[9px] text-slate-400 truncate">Hi-Fi Audio Tracks</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
+                            Acoustic Synthesis
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 20: Gen AI Recap -->
+            <div class="slide" id="slide-20">
+                <div>
+                    <h2 class="slide-title">Section 1 Recap: Gen AI Fundamentals</h2>
+                    <p class="slide-subtitle">Key takeaways to establish our technical foundation.</p>
+                </div>
+                
+                <div class="my-auto space-y-4 max-w-5xl mx-auto w-full">
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">GenAI creates net-new content (text, images, code) instead of merely classifying historical inputs.</span>
+                    </div>
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">Large Language Models process numeric sub-word "tokens" to predict statistical probability weights.</span>
+                    </div>
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">The Transformer architecture's self-attention mechanism evaluates whole-sentence contexts simultaneously.</span>
+                    </div>
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">Custom capabilities range from light Prompt Engineering, to dynamic RAG systems, up to deep Fine-Tuning.</span>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+
+            <!-- ================= SECTION 2: AI CAREER OPPORTUNITIES (Slides 21 - 25) ================= -->
+            
+            <!-- Slide 21: Section divider -->
+            <div class="slide dark-theme" id="slide-21">
+                <svg class="neural-background" viewBox="0 0 1000 600">
+                    <circle cx="500" cy="300" r="10" fill="none" stroke="#00C2A8" stroke-width="2" class="animate-pulse" />
+                    <circle cx="300" cy="200" r="4" class="neural-node" />
+                    <circle cx="700" cy="400" r="4" class="neural-node" />
+                    <circle cx="750" cy="150" r="5" class="neural-node" />
+                    <circle cx="250" cy="450" r="5" class="neural-node" />
+                    <line x1="300" y1="200" x2="500" y2="300" stroke="#00C2A8" stroke-width="1" />
+                    <line x1="700" y1="400" x2="500" y2="300" stroke="#00C2A8" stroke-width="1" />
+                    <line x1="750" y1="150" x2="500" y2="300" stroke="#00C2A8" stroke-width="1" />
+                    <line x1="250" y1="450" x2="500" y2="300" stroke="#00C2A8" stroke-width="1" />
+                </svg>
+
+                <div class="flex flex-col items-center justify-center h-full text-center z-10">
+                    <div class="teal-circle-badge w-24 h-24 mb-10 shadow-2xl">
+                        <i data-lucide="compass" class="w-12 h-12"></i>
+                    </div>
+                    <h1 class="text-7xl font-extrabold tracking-tight mb-6 text-white">Section 2: AI Career Opportunities</h1>
+                    <p class="text-3xl text-slate-300 max-w-4xl font-light mb-16">How Generative AI is reshaping jobs, skills, and industry workflows.</p>
+                </div>
+            </div>
+
+            <!-- Slide 22: AI Generalist -->
+            <div class="slide" id="slide-22">
+                <div>
+                    <h2 class="slide-title">The AI Generalist</h2>
+                    <p class="slide-subtitle">Everyday professionals leveraging AI tools to multiply personal output speed.</p>
+                </div>
+                
+                <div class="my-auto grid grid-cols-12 gap-10 items-center">
+                    <!-- Central Hub representation -->
+                    <div class="col-span-5 flex justify-center build-step grow">
+                        <div class="w-72 h-72 rounded-full bg-gradient-to-br from-[#1B1F3B] to-[#00C2A8] text-white flex flex-col items-center justify-center text-center p-8 shadow-2xl border-8 border-white">
+                            <i data-lucide="user" class="w-16 h-16 mb-3 animate-bounce"></i>
+                            <span class="text-2xl font-black uppercase tracking-wider">AI Generalist</span>
+                            <span class="text-xs text-slate-200 mt-1">Multiplied Productivity</span>
+                        </div>
+                    </div>
+
+                    <!-- Spoke details -->
+                    <div class="col-span-7 grid grid-cols-2 gap-4">
+                        <div class="card p-5 flex items-start space-x-4 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 mt-1"><i data-lucide="megaphone" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg mb-1">Marketing</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Drafting multi-channel copy & mockups 5x faster.</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-start space-x-4 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 mt-1"><i data-lucide="clock" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg mb-1">Operations</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Summarizing legal reports, emails, and meetings instantly.</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-start space-x-4 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 mt-1"><i data-lucide="layout" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg mb-1">No-Code</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Automating file triggers with Zapier and Make.</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-start space-x-4 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 mt-1"><i data-lucide="target" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg mb-1">Steering</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Directing logical analysis outcomes without coding syntax.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 23: AI Architect -->
+            <div class="slide" id="slide-23">
+                <div>
+                    <h2 class="slide-title">The AI Architect</h2>
+                    <p class="slide-subtitle">Engineers who design enterprise-grade platforms integrating LLMs securely with corporate data.</p>
+                </div>
+                
+                <div class="flex items-stretch space-x-8 my-auto px-4">
+                    <div class="flex-1 card p-8 flex flex-col justify-between border-t-4 border-t-slate-400 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6 bg-slate-400"><i data-lucide="layers" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">System Integration</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Mapping secure database connectors, load balancers, and logic gateways between company networks and public APIs.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 card p-8 flex flex-col justify-between border-t-4 border-t-[#00C2A8] bg-teal-50/10 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="cpu" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">Pipeline Orchestration</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Structuring advanced RAG pipelines, dynamic memory systems, vector spaces, and multi-agent loops.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 card p-8 flex flex-col justify-between border-t-4 border-t-slate-400 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6 bg-slate-400"><i data-lucide="shield-alert" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">Security & Trust</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Enforcing strict data boundary isolation, PII sanitization filters, prompt injection firewalls, and logging audits.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 24: Other Emerging AI Roles -->
+            <div class="slide" id="slide-24">
+                <div>
+                    <h2 class="slide-title">Emerging Specialized AI Roles</h2>
+                    <p class="slide-subtitle">High-paying career paths born directly of the current artificial intelligence revolution.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-8 my-auto">
+                    <div class="card flex items-start space-x-6 build-step grow">
+                        <div class="teal-circle-badge"><i data-lucide="terminal" class="w-8 h-8"></i></div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Prompt Engineer</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Systematically templates, tests, audits, and fine-tunes prompt text libraries for structured programmatic apps.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start space-x-6 build-step grow">
+                        <div class="teal-circle-badge"><i data-lucide="kanban" class="w-8 h-8"></i></div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">AI Product Manager</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Bridges the gap between technical ML latency/cost boundaries and user experience designs.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start space-x-6 build-step grow">
+                        <div class="teal-circle-badge"><i data-lucide="server" class="w-8 h-8"></i></div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">MLOps / AI Dev</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Fine-tunes base weights, manages vector indexes, deploys local offline model servers (Ollama, vLLM).</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start space-x-6 build-step grow">
+                        <div class="teal-circle-badge"><i data-lucide="scale" class="w-8 h-8"></i></div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">AI Ethicist & Auditor</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Monitors model output distributions for bias, toxicity, copyrights violations, and regulatory compliance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 25: How to Start Your AI Career -->
+            <div class="slide" id="slide-25">
+                <div>
+                    <h2 class="slide-title">How to Launch Your AI Career</h2>
+                    <p class="slide-subtitle">A simple 4-step progressive roadmap to building value in the AI ecosystem.</p>
+                </div>
+                
+                <div class="my-auto flex flex-col space-y-4 max-w-5xl mx-auto w-full">
+                    <!-- Step 1 -->
+                    <div class="card flex items-center space-x-6 border-l-8 border-l-slate-400 build-step float-up">
+                        <div class="teal-circle-badge w-12 h-12 font-bold text-lg bg-slate-400">1</div>
+                        <div>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1">Adopt AI Tools into Daily Work</h3>
+                            <p class="text-slate-500 text-sm">Become fluent in writing systematic prompts for daily emails, research, and coding. Free, immediate ROI.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="card flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step float-up" style="margin-left: 2rem;">
+                        <div class="teal-circle-badge w-12 h-12 font-bold text-lg">2</div>
+                        <div>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1">Build Proof-of-Concept Projects</h3>
+                            <p class="text-slate-600 text-sm">Create a custom chatbot trained on family recipes, or program a simple email auto-classifier. Focus on building tangible assets.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="card flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step float-up" style="margin-left: 4rem;">
+                        <div class="teal-circle-badge w-12 h-12 font-bold text-lg">3</div>
+                        <div>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1">Study Architectural Integrations (RAG & APIs)</h3>
+                            <p class="text-slate-600 text-sm">Understand how APIs, vectors databases, embeddings, and context parsing connect models to the real world.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="card flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step float-up" style="margin-left: 6rem;">
+                        <div class="teal-circle-badge w-12 h-12 font-bold text-lg">4</div>
+                        <div>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1">Engage with AI Builder Communities</h3>
+                            <p class="text-slate-600 text-sm">Contribute to open-source tools (LangChain, LlamaIndex), post learnings on LinkedIn, and network in local hackathons.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+
+            <!-- ================= SECTION 3: RAG — RETRIEVAL AUGMENTED GENERATION (Slides 26 - 35) ================= -->
+            
+            <!-- Slide 26: Section divider -->
+            <div class="slide dark-theme" id="slide-26">
+                <svg class="neural-background" viewBox="0 0 1000 600">
+                    <rect x="450" y="250" width="100" height="100" fill="none" stroke="#00C2A8" stroke-width="2" rx="10" />
+                    <line x1="100" y1="300" x2="450" y2="300" stroke="#00C2A8" stroke-width="1.5" stroke-dasharray="5" />
+                    <line x1="900" y1="300" x2="550" y2="300" stroke="#00C2A8" stroke-width="1.5" stroke-dasharray="5" />
+                    <circle cx="200" cy="300" r="6" class="neural-node" />
+                    <circle cx="800" cy="300" r="6" class="neural-node" />
+                </svg>
+
+                <div class="flex flex-col items-center justify-center h-full text-center z-10">
+                    <div class="teal-circle-badge w-24 h-24 mb-10 shadow-2xl">
+                        <i data-lucide="database" class="w-12 h-12"></i>
+                    </div>
+                    <h1 class="text-7xl font-extrabold tracking-tight mb-6 text-white">Section 3: Retrieval-Augmented Generation</h1>
+                    <p class="text-3xl text-slate-300 max-w-4xl font-light mb-16">Safe grounding of LLM engines in private corporate knowledge structures.</p>
+                </div>
+            </div>
+
+            <!-- Slide 27: What is RAG? -->
+            <div class="slide" id="slide-27">
+                <div>
+                    <h2 class="slide-title">What is RAG? (The Core Concept)</h2>
+                    <p class="slide-subtitle">Giving the LLM an "open-book exam" using your own documents.</p>
+                </div>
+                
+                <div class="flex items-stretch space-x-10 my-auto px-4">
+                    <!-- Q -->
+                    <div class="flex-1 card flex flex-col items-center text-center p-8 build-step grow">
+                        <div class="teal-circle-badge w-20 h-20 mb-6"><i data-lucide="help-circle" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">1. User Question</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Employee asks: "What is our company policy on parental leave?"</p>
+                    </div>
+
+                    <!-- Arrow 1 -->
+                    <div class="flex items-center justify-center build-step grow">
+                        <i data-lucide="arrow-right" class="w-12 h-12 text-[#00C2A8]"></i>
+                    </div>
+
+                    <!-- R -->
+                    <div class="flex-1 card flex flex-col items-center text-center p-8 border-2 border-[#00C2A8] bg-teal-50/5 build-step grow">
+                        <div class="teal-circle-badge w-20 h-20 mb-6"><i data-lucide="file-search" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">2. Document Retrieval</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">System queries company HR storage and pulls actual policy paragraphs matching the topic.</p>
+                    </div>
+
+                    <!-- Arrow 2 -->
+                    <div class="flex items-center justify-center build-step grow">
+                        <i data-lucide="arrow-right" class="w-12 h-12 text-[#00C2A8]"></i>
+                    </div>
+
+                    <!-- G -->
+                    <div class="flex-1 card flex flex-col items-center text-center p-8 build-step grow">
+                        <div class="teal-circle-badge w-20 h-20 mb-6"><i data-lucide="message-square" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">3. Grounded Answer</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">The LLM reads retrieved rules as references and drafts a precise factual summary answer.</p>
+                    </div>
+                </div>
+                <div class="mt-8 grid grid-cols-2 gap-8 build-step grow">
+                    <div class="card p-5 bg-slate-50 flex items-center space-x-4 border-l-4 border-l-slate-400">
+                        <i data-lucide="lock" class="w-8 h-8 text-slate-400 flex-shrink-0"></i>
+                        <p class="text-slate-600 text-base">
+                            <strong>Closed-Book Exam (Traditional LLM):</strong> The student tries to answer questions relying only on memory from classes attended months ago. They might guess or misremember (hallucinate).
+                        </p>
+                    </div>
+                    <div class="card p-5 bg-teal-50 border border-teal-200 flex items-center space-x-4 border-l-4 border-l-[#00C2A8]">
+                        <i data-lucide="book-open" class="w-8 h-8 text-teal-600 flex-shrink-0"></i>
+                        <p class="text-slate-700 text-base">
+                            <strong>Open-Book Exam (RAG System):</strong> We search the library, find the exact page of the textbook containing the answer, place it in front of the student, and ask them to summarize it.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 28: RAG Pipeline Overview -->
+            <div class="slide" id="slide-28">
+                <div>
+                    <h2 class="slide-title">The Complete RAG Architecture Pipeline</h2>
+                    <p class="slide-subtitle">How raw documents are ingested, indexed, queried, and synthesized.</p>
+                </div>
+                
+                <div class="my-auto flex flex-col items-center space-y-3 w-full max-w-[912px] mx-auto">
+                    <!-- Stage 1: Ingestion (Top Row) -->
+                    <div class="flex items-center justify-center space-x-6 w-full">
+                        <!-- Step 1: Doc -->
+                        <div class="card p-6 w-72 flex flex-col items-center text-center build-step grow justify-center border-t-4 border-t-[#3b82f6]">
+                            <div class="teal-circle-badge w-12 h-12 mb-3 bg-slate-800"><i data-lucide="file-text" class="w-6 h-6 text-white"></i></div>
+                            <h4 class="font-bold text-lg text-white mb-1">1. Documents</h4>
+                            <p class="text-[11px] text-slate-400">Raw knowledge source files</p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex-shrink-0 build-step grow text-center flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-6 h-6 text-[#38bdf8]"></i>
+                        </div>
+
+                        <!-- Step 2: Chunking -->
+                        <div class="card p-6 w-72 flex flex-col items-center text-center build-step grow justify-center border-t-4 border-t-[#3b82f6]">
+                            <div class="teal-circle-badge w-12 h-12 mb-3 bg-slate-800"><i data-lucide="scissors" class="w-6 h-6 text-white"></i></div>
+                            <h4 class="font-bold text-lg text-white mb-1">2. Chunking</h4>
+                            <p class="text-[11px] text-slate-400">Splitting text into paragraphs</p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex-shrink-0 build-step grow text-center flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-6 h-6 text-[#38bdf8]"></i>
+                        </div>
+
+                        <!-- Step 3: Embeddings -->
+                        <div class="card p-6 w-72 flex flex-col items-center text-center build-step grow justify-center border-t-4 border-t-[#3b82f6]">
+                            <div class="teal-circle-badge w-12 h-12 mb-3 bg-slate-800"><i data-lucide="hash" class="w-6 h-6 text-white"></i></div>
+                            <h4 class="font-bold text-lg text-white mb-1">3. Embeddings</h4>
+                            <p class="text-[11px] text-slate-400">Converting text to vectors</p>
+                        </div>
+                    </div>
+
+                    <!-- Vertical Flow Arrow 1: Aligned under Step 3 (Embeddings) -->
+                    <div class="w-full flex justify-end pr-[130px] build-step grow py-1">
+                        <i data-lucide="arrow-down" class="w-8 h-8 text-[#38bdf8] animate-bounce"></i>
+                    </div>
+
+                    <!-- Stage 2: Central Storage Hub (Center) -->
+                    <div class="flex justify-center w-full">
+                        <div class="card border-2 border-[#3b82f6] bg-[#3b82f6]/10 shadow-[0_0_20px_rgba(59,130,246,0.3)] p-6 w-80 flex flex-col items-center text-center build-step grow justify-center">
+                            <div class="teal-circle-badge w-14 h-14 mb-3"><i data-lucide="database" class="w-7 h-7 text-white"></i></div>
+                            <h4 class="font-bold text-xl text-white mb-1">4. Vector Database</h4>
+                            <p class="text-[11px] text-slate-300">Semantic index coordinates repository</p>
+                        </div>
+                    </div>
+
+                    <!-- Vertical Flow Arrow 2: Aligned above Step 5 (Retrieval) -->
+                    <div class="w-full flex justify-start pl-[286px] build-step grow py-1">
+                        <i data-lucide="arrow-down" class="w-8 h-8 text-[#38bdf8] animate-bounce"></i>
+                    </div>
+
+                    <!-- Stage 3: Retrieval & Synthesis (Bottom Row) -->
+                    <div class="flex items-center justify-center space-x-6 w-full">
+                        <!-- Step 5: Retrieval -->
+                        <div class="card p-6 w-72 flex flex-col items-center text-center build-step grow justify-center border-t-4 border-t-[#3b82f6]">
+                            <div class="teal-circle-badge w-12 h-12 mb-3 bg-slate-800"><i data-lucide="search" class="w-6 h-6 text-white"></i></div>
+                            <h4 class="font-bold text-lg text-white mb-1">5. Retrieval</h4>
+                            <p class="text-[11px] text-slate-400">Fetching closest context matches</p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex-shrink-0 build-step grow text-center flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-6 h-6 text-[#38bdf8]"></i>
+                        </div>
+
+                        <!-- Step 6: LLM Answer -->
+                        <div class="card p-6 w-72 flex flex-col items-center text-center build-step grow justify-center border-t-4 border-t-[#3b82f6]">
+                            <div class="teal-circle-badge w-12 h-12 mb-3 bg-slate-800"><i data-lucide="message-square" class="w-6 h-6 text-white"></i></div>
+                            <h4 class="font-bold text-lg text-white mb-1">6. LLM Synthesis</h4>
+                            <p class="text-[11px] text-slate-400">Grounded conversational response</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 29: Step 1: Chunking -->
+            <div class="slide" id="slide-29">
+                <div>
+                    <h2 class="slide-title">RAG Ingestion: Document Chunking</h2>
+                    <p class="slide-subtitle">Breaking massive raw files into manageable semantic paragraphs.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-10 my-auto items-stretch">
+                    <!-- The Challenge -->
+                    <div class="card flex flex-col justify-between p-8 border-l-8 border-l-slate-400 build-step wipe-left">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="teal-circle-badge bg-slate-400"><i data-lucide="file-warning" class="w-6 h-6"></i></div>
+                                <h3 class="text-2xl font-bold text-slate-800">The Context Overhead</h3>
+                            </div>
+                            <p class="text-slate-600 text-base leading-relaxed">Feeding an entire 500-page engineering handbook into a prompt makes the model extremely slow, expensive, and dilutes attention focus.</p>
+                        </div>
+                    </div>
+
+                    <!-- Chunking Strategy -->
+                    <div class="card flex flex-col justify-between p-8 border-l-8 border-l-[#00C2A8] bg-teal-50/5 build-step wipe-left">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="teal-circle-badge"><i data-lucide="scissors" class="w-6 h-6"></i></div>
+                                <h3 class="text-2xl font-bold text-slate-800">Logical Chunking</h3>
+                            </div>
+                            <p class="text-slate-600 text-base leading-relaxed">Files are sliced into small logical parts (300-500 words) with metadata tags and context overlaps, preserving semantic headers.</p>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded border border-teal-100 flex items-center justify-between text-xs text-teal-800 font-mono mt-4">
+                            <span>Ingested Document</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            <span>[Chunk 1]  [Chunk 2]  [Chunk 3]</span>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 30: Step 2: Embeddings & Vector DB -->
+            <div class="slide" id="slide-30">
+                <div>
+                    <h2 class="slide-title">RAG Ingestion: Vector Spaces</h2>
+                    <p class="slide-subtitle">Converting human text chunks into spatial mathematical coordinates mapping meaning.</p>
+                </div>
+                
+                <div class="my-auto grid grid-cols-12 gap-10 items-center">
+                    <!-- Scatter plot container -->
+                    <div class="col-span-7">
+                        <div class="scatter-plot h-96 w-full">
+                            <!-- Axis labels -->
+                            <div class="absolute bottom-2 right-4 text-xs font-bold text-slate-400">Semantic Vector X</div>
+                            <div class="absolute top-4 left-4 text-xs font-bold text-slate-400 rotate-90 origin-top-left">Semantic Vector Y</div>
+                        </div>
+                    </div>
+
+                    <!-- Explanations -->
+                    <div class="col-span-5 space-y-6">
+                        <div class="card p-6 border-l-4 border-l-[#00C2A8] build-step grow">
+                            <h4 class="font-bold text-slate-800 mb-2 text-lg">Semantic Coordinate Mapping</h4>
+                            <p class="text-sm text-slate-500">Embedding models translate text lists into numeric coordinates. Words sharing similar semantic properties automatically plot closer together.</p>
+                        </div>
+                        <div class="card p-6 border-l-4 border-l-blue-500 build-step grow">
+                            <h4 class="font-bold text-slate-800 mb-2 text-lg">Vector Database Storage</h4>
+                            <p class="text-sm text-slate-500">Stores coordinates permanently, enabling instantaneous calculation of distance angles (Cosine Similarity) instead of slow literal keyword matches.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 31: Step 3: Retrieval + Generation -->
+            <div class="slide" id="slide-31">
+                <div>
+                    <h2 class="slide-title">RAG Runtime: Retrieval & Generation</h2>
+                    <p class="slide-subtitle">Finding nearest coordinates matching the query to construct the grounded answer.</p>
+                </div>
+                
+                <div class="my-auto grid grid-cols-12 gap-10 items-center">
+                    <!-- Scatter plot container (active query dot) -->
+                    <div class="col-span-7">
+                        <div class="scatter-plot h-96 w-full">
+                            <div class="absolute bottom-2 right-4 text-xs font-bold text-slate-400">Semantic Vector X</div>
+                            <div class="absolute top-4 left-4 text-xs font-bold text-slate-400 rotate-90 origin-top-left">Semantic Vector Y</div>
+                        </div>
+                    </div>
+
+                    <!-- Explanation cards -->
+                    <div class="col-span-5 space-y-4">
+                        <div class="card p-5 border-l-4 border-l-red-500 build-step grow">
+                            <h4 class="font-bold text-slate-800 text-lg mb-2">1. Vectorize Query</h4>
+                            <p class="text-xs text-slate-500">User's question is converted into a coordinate point using the same embedding logic.</p>
+                        </div>
+                        <div class="card p-5 border-l-4 border-l-[#00C2A8] build-step grow">
+                            <h4 class="font-bold text-slate-800 text-lg mb-2">2. Similarity Fetch</h4>
+                            <p class="text-xs text-slate-500">The database returns the top 3 closest coordinate document chunks representing relevant text details.</p>
+                        </div>
+                        <div class="card p-5 border-l-4 border-l-[#1B1F3B] build-step grow">
+                            <h4 class="font-bold text-slate-800 text-lg mb-2">3. Synthesis Response</h4>
+                            <p class="text-xs text-slate-500">The LLM combines query + document snippets to output a verified, structured answer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 32: Tools for Building RAG -->
+            <div class="slide" id="slide-32">
+                <div>
+                    <h2 class="slide-title">Developer Stack for RAG Integration</h2>
+                    <p class="slide-subtitle">Key libraries, engines, and APIs standard in enterprise developer workflows.</p>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-6 my-auto">
+                    <div class="card p-6 flex flex-col justify-between h-80 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="code-2" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">Orchestrators</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">LangChain and LlamaIndex for parsing documents, setting up prompts, and managing routing logic.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 flex flex-col justify-between h-80 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="database" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">Vector DBs</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Pinecone, Weaviate, Milvus, Chroma for fast coordinate search indexes.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 flex flex-col justify-between h-80 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="cpu" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">Embeddings</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">OpenAI Ada, Cohere, Voyage API models to parse text blocks into high quality coordinates.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 flex flex-col justify-between h-80 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="bar-chart" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">Evaluators</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Ragas, TruLens libraries to continuously score context retrieval relevance and generation accuracy.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 33: No-code Chatbots -->
+            <div class="slide" id="slide-33">
+                <div>
+                    <h2 class="slide-title">No-Code Custom Data Chatbots</h2>
+                    <p class="slide-subtitle">Ready-to-deploy platforms allowing non-engineers to construct RAG systems.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-8 my-auto">
+                    <div class="card flex items-start space-x-5 build-step grow">
+                        <div class="teal-circle-badge overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                            <img src="assets/notebooklm.png" alt="NotebookLM" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                            <i data-lucide="book-open" class="w-8 h-8 text-white hidden"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Google NotebookLM</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Upload documents, notes, or YouTube URLs. Instantly outputs deep synthesis briefs, FAQs, and generated podcasts.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start space-x-5 build-step grow">
+                        <div class="teal-circle-badge overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                            <img src="assets/chatgpt.png" alt="ChatGPT" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                            <i data-lucide="bot" class="w-8 h-8 text-white hidden"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Custom GPTs (OpenAI)</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Directly drop proprietary PDF guidelines inside the ChatGPT configurator interface to create shareable team bots.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start space-x-5 build-step grow">
+                        <div class="teal-circle-badge overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                            <img src="assets/chatbase.png" alt="Chatbase" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                            <i data-lucide="message-circle" class="w-8 h-8 text-white hidden"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Chatbase</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Ingest whole URLs. Embeds a custom styled customer support widget directly onto your website in minutes.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start space-x-5 build-step grow bg-teal-50/10 border-[#00C2A8]">
+                        <div class="teal-circle-badge overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                            <img src="assets/botpress.png" alt="Botpress" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                            <i data-lucide="git-branch" class="w-8 h-8 text-white hidden"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Botpress & Voiceflow</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Visual drag-and-drop conversational node designers for multi-channel corporate agent flows.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 34: Case Study -->
+            <div class="slide" id="slide-34">
+                <div>
+                    <h2 class="slide-title">Real-World Case Study: Support Ingestion</h2>
+                    <p class="slide-subtitle">How a technical firm optimized ticket resolution speeds with RAG.</p>
+                </div>
+                
+                <div class="my-auto w-full max-w-5xl mx-auto">
+                    <div class="grid grid-cols-2 gap-10 items-stretch">
+                        <!-- Before -->
+                        <div class="card flex flex-col justify-between p-8 border-l-8 border-l-rose-500/80 build-step wipe-left">
+                            <div>
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="teal-circle-badge bg-rose-500/20"><i data-lucide="frown" class="w-6 h-6 text-rose-400"></i></div>
+                                    <h3 class="text-xl font-bold text-white">Before: Manual Search</h3>
+                                </div>
+                                
+                                <div class="my-6">
+                                    <span class="text-6xl font-black text-rose-400 block tracking-tight">14 Mins</span>
+                                    <span class="text-xs text-slate-400 uppercase tracking-widest font-bold">Average Resolution Search Time</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2.5 text-sm text-slate-300 border-t border-white/5 pt-4">
+                                <div class="flex items-center space-x-2"><span class="text-rose-400">❌</span> <span>Scattered catalogs, PDFs & wikis</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-rose-400">❌</span> <span>Slow response pipeline speed</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-rose-400">❌</span> <span>High support agent burnout</span></div>
+                            </div>
+                        </div>
+
+                        <!-- After -->
+                        <div class="card flex flex-col justify-between p-8 border-2 border-sky-500/20 bg-sky-500/5 border-l-8 border-l-sky-500 build-step wipe-left">
+                            <div>
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="teal-circle-badge bg-sky-500/20"><i data-lucide="smile" class="w-6 h-6 text-sky-400"></i></div>
+                                    <h3 class="text-xl font-bold text-white">After: Semantic RAG</h3>
+                                </div>
+                                
+                                <div class="my-6">
+                                    <span class="text-6xl font-black text-sky-400 block tracking-tight">3 Secs</span>
+                                    <span class="text-xs text-sky-300 uppercase tracking-widest font-bold">Instant Context Retrieval</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2.5 text-sm text-slate-200 border-t border-white/5 pt-4">
+                                <div class="flex items-center space-x-2"><span class="text-sky-400">✅</span> <span>Indexed corporate handbooks</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-sky-400">✅</span> <span>Exact page-source citations</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-sky-400">✅</span> <span>99.4% factual answer accuracy</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Banner -->
+                    <div class="mt-8 bg-sky-950/30 border border-sky-500/15 p-4 rounded-xl flex items-center justify-between w-full build-step grow">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="zap" class="w-5 h-5 text-sky-400 animate-pulse"></i>
+                            <span class="text-sm text-slate-300 font-medium">Core Business Outcome:</span>
+                        </div>
+                        <span class="text-base font-black text-sky-400 uppercase tracking-wider">70% Decrease in Ticket Wait Times</span>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 35: RAG Recap -->
+            <div class="slide" id="slide-35">
+                <div>
+                    <h2 class="slide-title">Section 3 Recap: RAG Architectures</h2>
+                    <p class="slide-subtitle">Summary of key points regarding Retrieval-Augmented Generation.</p>
+                </div>
+                
+                <div class="my-auto space-y-4 max-w-5xl mx-auto w-full">
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">RAG grounds LLM models in proprietary, factual context, mitigating cutoff and hallucination risks.</span>
+                    </div>
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">The ingestion loop splits data into chunks, maps semantic vectors, and uploads coordinates into Vector DBs.</span>
+                    </div>
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">Embeddings represent semantic conceptual relationships mathematically rather than simple keywords.</span>
+                    </div>
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">No-code tools let non-developers configure robust contextual database widgets in minutes.</span>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 15: Fine-Tuning -->
+            <div class="slide" id="slide-15">
+                <div>
+                    <h2 class="slide-title">Fine-Tuning: What & When</h2>
+                    <p class="slide-subtitle">Modifying foundational model weights on custom specialized training sets.</p>
+                </div>
+                
+                <div class="my-auto flex items-center justify-between px-16 relative w-full max-w-5xl mx-auto">
+                    <!-- Base Model -->
+                    <div class="card text-center p-8 flex-1 max-w-sm build-step grow">
+                        <div class="teal-circle-badge w-20 h-20 mx-auto mb-6 bg-slate-500"><i data-lucide="box" class="w-10 h-10 text-white"></i></div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Base LLM</h3>
+                        <p class="text-slate-300 text-sm">Generic generalist capabilities trained on public internet text libraries.</p>
+                    </div>
+
+                    <!-- Wrench action -->
+                    <div class="flex flex-col items-center justify-center mx-6 build-step grow">
+                        <i data-lucide="settings" class="w-16 h-16 text-[#3b82f6] animate-spin-wrench mb-2"></i>
+                        <span class="text-xs uppercase font-bold text-[#38bdf8] tracking-wider">Weight Updates</span>
+                        <span class="text-[10px] text-slate-400">(Custom Domain Dataset)</span>
+                    </div>
+
+                    <!-- Specialized Model -->
+                    <div class="card text-center p-8 flex-1 max-w-sm border-2 border-[#3b82f6] bg-[#3b82f6]/10 build-step grow">
+                        <div class="teal-circle-badge w-20 h-20 mx-auto mb-6"><i data-lucide="award" class="w-10 h-10 text-white"></i></div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Fine-Tuned LLM</h3>
+                        <p class="text-slate-300 text-sm">Specialized in organization jargon, style, safety guardrails, and narrow behaviors.</p>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+
+            <!-- ================= SECTION 4: AGENTIC AI & VIBE CODING (Slides 36 - 45) ================= -->
+            
+            <!-- Slide 36: Section divider -->
+            <div class="slide dark-theme" id="slide-36">
+                <svg class="neural-background" viewBox="0 0 1000 600">
+                    <circle cx="500" cy="300" r="12" fill="none" stroke="#00C2A8" stroke-width="2.5" class="animate-ping" />
+                    <polygon points="500,280 520,320 480,320" fill="none" stroke="#00C2A8" stroke-width="2" />
+                    <circle cx="150" cy="150" r="4" class="neural-node" />
+                    <circle cx="850" cy="150" r="4" class="neural-node" />
+                    <circle cx="150" cy="450" r="4" class="neural-node" />
+                    <circle cx="850" cy="450" r="4" class="neural-node" />
+                </svg>
+
+                <div class="flex flex-col items-center justify-center h-full text-center z-10">
+                    <div class="teal-circle-badge w-24 h-24 mb-10 shadow-2xl">
+                        <i data-lucide="bot" class="w-12 h-12"></i>
+                    </div>
+                    <h1 class="text-7xl font-extrabold tracking-tight mb-6 text-white">Section 4: Agentic AI & Vibe Coding</h1>
+                    <p class="text-3xl text-slate-300 max-w-4xl font-light mb-16">The next frontier: autonomous planning, loops, and building software with language.</p>
+                </div>
+            </div>
+
+            <!-- Slide 37: Chatbot vs Automation vs Agent -->
+            <div class="slide" id="slide-37">
+                <div>
+                    <h2 class="slide-title">Chatbot vs. Automation vs. AI Agent</h2>
+                    <p class="slide-subtitle">Understanding the spectrum of software autonomy and logic depth.</p>
+                </div>
+                
+                <div class="flex space-x-8 my-auto w-full max-w-6xl mx-auto items-stretch">
+                    <!-- Chatbot -->
+                    <div class="flex-1 card p-8 flex flex-col justify-between border-t-4 border-t-slate-500 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6 bg-slate-800"><i data-lucide="message-square" class="w-8 h-8 text-white"></i></div>
+                            <h3 class="text-2xl font-bold text-white mb-2">1. Custom Chatbot</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Passive, conversational interface. Responds to direct inputs only, with no tool execution capabilities.</p>
+                            
+                            <!-- Autonomy progress bar -->
+                            <div class="space-y-1.5 my-6">
+                                <div class="flex justify-between text-xs font-bold text-slate-500">
+                                    <span>Autonomy Level</span>
+                                    <span>15% (Low)</span>
+                                </div>
+                                <div class="w-full bg-slate-900 border border-white/5 rounded-full h-1.5">
+                                    <div class="bg-slate-600 h-1.5 rounded-full" style="width: 15%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-xs border-t border-white/5 pt-4">
+                            <div class="flex justify-between"><span class="text-slate-500">Trigger:</span> <span class="text-slate-300 font-medium">User Prompt</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Logic:</span> <span class="text-slate-300 font-medium">Passive Text Response</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Tool execution:</span> <span class="text-slate-300 font-medium">None (Text-only)</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Automation -->
+                    <div class="flex-1 card p-8 flex flex-col justify-between border-t-4 border-t-[#3b82f6]/60 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6 bg-slate-800"><i data-lucide="repeat" class="w-8 h-8 text-white"></i></div>
+                            <h3 class="text-2xl font-bold text-white mb-2">2. Rigid Automation</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Linear trigger-action flows (e.g. Zapier). Follows strict static rules, crashing if schemas change.</p>
+                            
+                            <!-- Autonomy progress bar -->
+                            <div class="space-y-1.5 my-6">
+                                <div class="flex justify-between text-xs font-bold text-slate-400">
+                                    <span>Autonomy Level</span>
+                                    <span>45% (Medium)</span>
+                                </div>
+                                <div class="w-full bg-slate-900 border border-white/5 rounded-full h-1.5">
+                                    <div class="bg-[#3b82f6]/50 h-1.5 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-xs border-t border-white/5 pt-4">
+                            <div class="flex justify-between"><span class="text-slate-500">Trigger:</span> <span class="text-slate-300 font-medium">Cron / Webhook</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Logic:</span> <span class="text-slate-300 font-medium">If-This-Then-That (ITTT)</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Tool execution:</span> <span class="text-slate-300 font-medium">Static Integrations</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Agent -->
+                    <div class="flex-1 card p-8 flex flex-col justify-between border-2 border-[#3b82f6] bg-[#3b82f6]/10 shadow-[0_0_25px_rgba(59,130,246,0.25)] relative build-step grow">
+                        <!-- Next Frontier Badge -->
+                        <span class="absolute top-4 right-4 bg-[#3b82f6]/20 text-[#38bdf8] border border-[#3b82f6]/40 text-[9px] px-2.5 py-0.5 rounded font-extrabold tracking-wider uppercase animate-pulse">Next Frontier</span>
+                        
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="cpu" class="w-8 h-8 text-white"></i></div>
+                            <h3 class="text-2xl font-bold text-white mb-2">3. AI Agent</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">Goal-oriented executor. Decomposes tasks, plans routes, selects APIs, and self-corrects bugs.</p>
+                            
+                            <!-- Autonomy progress bar -->
+                            <div class="space-y-1.5 my-6">
+                                <div class="flex justify-between text-xs font-bold text-[#38bdf8]">
+                                    <span>Autonomy Level</span>
+                                    <span>98% (High Autonomy)</span>
+                                </div>
+                                <div class="w-full bg-slate-900 border border-white/5 rounded-full h-1.5">
+                                    <div class="bg-gradient-to-r from-blue-500 to-sky-400 h-1.5 rounded-full shadow-lg" style="width: 98%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-xs border-t border-white/5 pt-4">
+                            <div class="flex justify-between"><span class="text-slate-400">Trigger:</span> <span class="text-white font-bold">Goal-Driven Directive</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Logic:</span> <span class="text-[#38bdf8] font-bold">Dynamic Iterative Loop</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Tool execution:</span> <span class="text-[#38bdf8] font-bold">Autonomously calls APIs</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 38: How Agents Work (Loop) -->
+            <div class="slide" id="slide-38">
+                <div>
+                    <h2 class="slide-title">How Agents Work: The Autonomy Loop</h2>
+                    <p class="slide-subtitle">The continuous cognitive cycle of modern agentic systems.</p>
+                </div>
+                
+                <div class="my-auto grid grid-cols-12 gap-10 items-center">
+                    <!-- Central Hub representation -->
+                    <div class="col-span-5 flex justify-center build-step grow">
+                        <div class="w-72 h-72 rounded-full bg-gradient-to-br from-[#1B1F3B] to-[#00C2A8] text-white flex flex-col items-center justify-center text-center p-8 shadow-2xl border-8 border-white">
+                            <i data-lucide="refresh-cw" class="w-16 h-16 mb-3 animate-spin"></i>
+                            <span class="text-2xl font-black uppercase tracking-wider">Cognitive Loop</span>
+                            <span class="text-xs text-slate-200 mt-1">Plan - Act - Reflect</span>
+                        </div>
+                    </div>
+
+                    <!-- Spoke details -->
+                    <div class="col-span-7 grid grid-cols-2 gap-4">
+                        <div class="card p-5 flex items-start space-x-4 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 mt-1"><i data-lucide="eye" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg mb-1">1. Perceive</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Reads user goal, evaluates environment parameters and API keys.</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-start space-x-4 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 mt-1"><i data-lucide="list-todo" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg mb-1">2. Plan</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Decomposes the primary objective into small, sequential step tasks.</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-start space-x-4 build-step grow">
+                            <div class="teal-circle-badge w-12 h-12 mt-1"><i data-lucide="play" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg mb-1">3. Act</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Executes searches, edits files, calls APIs, or writes code scripts.</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-start space-x-4 build-step grow bg-teal-50/10 border-[#00C2A8]">
+                            <div class="teal-circle-badge w-12 h-12 mt-1"><i data-lucide="activity" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg mb-1">4. Reflect</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Audits output success. If errors occur, re-plans and starts loop again.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 bg-teal-50 border border-teal-200 p-5 rounded-xl flex items-center space-x-4 build-step grow">
+                    <div class="teal-circle-badge w-12 h-12 flex-shrink-0"><i data-lucide="utensils" class="w-6 h-6"></i></div>
+                    <p class="text-slate-700 text-lg">
+                        <strong>💡 Everyday Analogy: A Chef in a Kitchen.</strong> Instead of just listing lasagna ingredients (passive chatbot), the chef reads the order (perceive), outlines recipe steps (plan), chops vegetables and boils pasta (act), tastes the sauce to adjust seasoning (reflect), and serves only when perfect!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 39: Agent Tools & Frameworks -->
+            <div class="slide" id="slide-39">
+                <div>
+                    <h2 class="slide-title">Developer Stack for Agentic AI</h2>
+                    <p class="slide-subtitle">Popular software libraries used to engineer autonomous workflows.</p>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-6 my-auto">
+                    <div class="card p-6 flex flex-col justify-between h-80 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="git-merge" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">LangGraph</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Stateful multi-agent system orchestrator mapping loop flows as directed cyclical graphs.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 flex flex-col justify-between h-80 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="users" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">CrewAI</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Roleplay agent manager assigning specific tasks, tools, and communications boundaries to agents.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 flex flex-col justify-between h-80 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="workflow" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">Zapier Central</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">No-code AI bots interacting with thousands of active software triggers and data pipelines.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 flex flex-col justify-between h-80 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="monitor" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">OS World</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Anthropic Computer Use protocol letting models read screen pixels, move cursors, and click UI elements.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 40: Automating Tasks -->
+            <div class="slide" id="slide-40">
+                <div>
+                    <h2 class="slide-title">Real-World Agent Automations</h2>
+                    <p class="slide-subtitle">Common administrative workflows currently automated by autonomous AI agents.</p>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-8 my-auto items-stretch">
+                    <div class="card p-6 flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="search" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">Research Agent</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Given a target company, scrapes 50 pages, parses latest news files, aggregates SWOT details, and builds reports.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="mail" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">Email Inbox Agent</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Scans client emails, categorizes ticket urgency, pulls customer CRM history from database, and drafts custom responses.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="calendar" class="w-8 h-8"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">Scheduling Agent</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Converses directly across external clients, reviews multiple calendars, respects timezone rules, and sends invite links.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 41: What is Vibe Coding? -->
+            <div class="slide" id="slide-41">
+                <div>
+                    <h2 class="slide-title">What is "Vibe Coding"?</h2>
+                    <p class="slide-subtitle">Programming applications in plain natural language rather than writing code syntax.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-10 my-auto items-center w-full max-w-6xl mx-auto">
+                    <!-- Speech prompt on left -->
+                    <div class="space-y-6">
+                        <div class="speech-bubble border-[#3b82f6]/40 bg-[#3b82f6]/5 text-white build-step grow">
+                            <h4 class="font-bold text-xs text-[#38bdf8] uppercase mb-2">Human Prompt Request</h4>
+                            "Build a personal workout logger app with clean dark mode, chart analytics, and CSV exporting capabilities."
+                        </div>
+                        <div class="flex items-center justify-center build-step grow space-x-4">
+                            <i data-lucide="arrow-right" class="w-8 h-8 text-[#38bdf8]"></i>
+                            <span class="text-sm font-bold text-[#38bdf8] uppercase tracking-widest">Generates App Instantly</span>
+                        </div>
+                    </div>
+
+                    <!-- Mockup window on right: Rendered Working App Preview -->
+                    <div class="mockup-window h-80 flex flex-col build-step grow border border-white/10 shadow-2xl bg-[#090d16] text-white">
+                        <div class="mockup-header border-b border-white/5 px-4 py-3 flex items-center justify-between bg-slate-900/80">
+                            <div class="flex space-x-1.5 items-center">
+                                <span class="dot-btn bg-red-500"></span>
+                                <span class="dot-btn bg-yellow-500"></span>
+                                <span class="dot-btn bg-green-500"></span>
+                                <span class="text-[10px] text-slate-400 font-mono ml-4 bg-slate-950 px-2 py-0.5 rounded border border-white/5">localhost:5173/</span>
+                            </div>
+                            <span class="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-1.5 py-0.5 rounded animate-pulse">● Running App</span>
+                        </div>
+                        <div class="p-5 overflow-hidden flex-1 flex flex-col justify-between space-y-4">
+                            <!-- App Header -->
+                            <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                                <span class="font-bold text-sm flex items-center space-x-1">
+                                    <span>🏋️‍♂️</span>
+                                    <span>Workout Tracker Pro</span>
+                                </span>
+                                <span class="text-[10px] bg-[#3b82f6]/20 text-[#38bdf8] border border-[#3b82f6]/30 px-2 py-0.5 rounded-full font-bold">Vibe Mode</span>
+                            </div>
+
+                            <!-- Dashboard Stats -->
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-white/5 border border-white/5 p-2 rounded text-center">
+                                    <span class="text-slate-400 text-[10px] block">Weekly Workouts</span>
+                                    <span class="text-white text-lg font-extrabold">12 Sessions</span>
+                                </div>
+                                <div class="bg-white/5 border border-white/5 p-2 rounded text-center">
+                                    <span class="text-slate-400 text-[10px] block">Active Streak</span>
+                                    <span class="text-white text-lg font-extrabold text-[#38bdf8]">5 Days 🔥</span>
+                                </div>
+                            </div>
+
+                            <!-- Workout List -->
+                            <div class="space-y-1.5">
+                                <div class="flex items-center justify-between text-xs bg-slate-900 border border-white/5 p-2 rounded">
+                                    <span class="text-slate-300">🏃‍♂️ Monday Morning Run</span>
+                                    <span class="text-emerald-400 font-bold">5.2 km</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs bg-slate-900 border border-white/5 p-2 rounded">
+                                    <span class="text-slate-300">🏋️‍♀️ Chest Press & Core</span>
+                                    <span class="text-emerald-400 font-bold">4 Sets</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="flex space-x-2 pt-2">
+                                <button class="flex-1 bg-[#3b82f6]/25 hover:bg-[#3b82f6]/40 text-[#38bdf8] border border-[#3b82f6]/40 py-1.5 rounded text-xs font-bold transition-all duration-300 flex items-center justify-center space-x-1">
+                                    <span>+ Add Workout</span>
+                                </button>
+                                <button class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-white/10 py-1.5 rounded text-xs font-bold transition-all duration-300 flex items-center justify-center space-x-1">
+                                    <span>📤 Export CSV</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+
+            <!-- Slide 41b: The Dangers of Vibe Coding -->
+            <div class="slide" id="slide-41b">
+                <div>
+                    <h2 class="slide-title">The Hidden Dangers of "Vibe Coding"</h2>
+                    <p class="slide-subtitle">What happens when we delegate software scaling, cost budgets, and security entirely to vibes.</p>
+                </div>
+                
+                <div class="grid grid-cols-12 gap-8 my-auto items-stretch w-full max-w-6xl mx-auto">
+                    <!-- Left: Pitfalls List -->
+                    <div class="col-span-7 space-y-4 flex flex-col justify-center">
+                        <!-- Pitfall 1 -->
+                        <div class="card p-5 border-l-4 border-l-rose-500 bg-rose-950/5 build-step grow">
+                            <div class="flex items-start space-x-4">
+                                <div class="teal-circle-badge w-10 h-10 bg-rose-500/20 flex-shrink-0"><i data-lucide="server-off" class="w-5 h-5 text-rose-400"></i></div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white mb-1">1. Scaling & Performance Bottlenecks</h3>
+                                    <p class="text-xs text-slate-300 leading-relaxed">AI builders write queries that work for single-user dev but crash under load. Redundant database scans, lack of caching, and unpaginated tables trigger server timeouts under real traffic.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pitfall 2 -->
+                        <div class="card p-5 border-l-4 border-l-rose-500 bg-rose-950/5 build-step grow">
+                            <div class="flex items-start space-x-4">
+                                <div class="teal-circle-badge w-10 h-10 bg-rose-500/20 flex-shrink-0"><i data-lucide="dollar-sign" class="w-5 h-5 text-rose-400"></i></div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white mb-1">2. Runaway API Cost Loops</h3>
+                                    <p class="text-xs text-slate-300 leading-relaxed">Uncontrolled recursive agentic loops or lack of request throttling can trigger thousands of repeated API calls, resulting in sudden, massive service provider bills overnight.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pitfall 3 -->
+                        <div class="card p-5 border-l-4 border-l-rose-500 bg-rose-950/5 build-step grow">
+                            <div class="flex items-start space-x-4">
+                                <div class="teal-circle-badge w-10 h-10 bg-rose-500/20 flex-shrink-0"><i data-lucide="shield-alert" class="w-5 h-5 text-rose-400"></i></div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white mb-1">3. Exposed Security Vulnerabilities</h3>
+                                    <p class="text-xs text-slate-300 leading-relaxed">Generative tools regularly expose sensitive credentials, leave open CORS endpoints, bypass encryption, or hardcode credentials directly in Git commits.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Live Simulation Monitor -->
+                    <div class="col-span-5 card border-2 border-rose-500/30 bg-[#090d16] flex flex-col justify-between p-6 relative build-step grow overflow-hidden">
+                        <!-- Top Header -->
+                        <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                            <span class="text-xs font-bold text-rose-400 uppercase tracking-widest flex items-center space-x-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                                <span>Live Risk Simulation</span>
+                            </span>
+                            <span class="text-[10px] text-slate-400 font-mono">monitor: active</span>
+                        </div>
+
+                        <!-- Cost Widget -->
+                        <div class="my-4 bg-rose-950/20 border border-rose-500/20 p-4 rounded-lg text-center">
+                            <span class="text-[10px] text-slate-400 uppercase tracking-widest block font-bold">Accumulating API Bills</span>
+                            <span id="live-api-bill" class="text-4xl font-black text-rose-500 font-mono block mt-1">$0.00</span>
+                        </div>
+
+                        <!-- Scrolling Terminal Logs -->
+                        <div class="bg-black/45 border border-white/5 rounded-lg p-3 font-mono text-[9px] text-slate-400 flex-1 min-h-[7rem] overflow-hidden relative">
+                            <div id="live-sec-terminal" class="space-y-1.5 absolute bottom-3 left-3 right-3 transition-all duration-300">
+                                <div class="text-slate-500">[SYSTEM] Initiating server check...</div>
+                                <div class="text-slate-500">[SYSTEM] Deploying build-v1.0...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 41c: Concept-First Engineering -->
+            <div class="slide" id="slide-41c">
+                <div>
+                    <h2 class="slide-title">Concept-First Engineering</h2>
+                    <p class="slide-subtitle">AI accelerates execution velocity, but your architectural foundation governs quality.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-10 my-auto items-stretch w-full max-w-5xl mx-auto">
+                    <!-- Left: The Vibe Coder Loop -->
+                    <div class="card p-8 border-2 border-rose-500/20 bg-rose-950/5 flex flex-col justify-between build-step grow">
+                        <div>
+                            <h3 class="text-xl font-bold text-rose-400 mb-4 flex items-center space-x-2">
+                                <span>❌</span>
+                                <span>The Vibe Coder Loop Trap</span>
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Prompting without understanding turns development into a frustrating game of trial-and-error:</p>
+                            
+                            <div class="bg-rose-950/40 border border-rose-500/30 rounded-lg p-4 font-mono text-xs text-rose-300 space-y-2 text-center">
+                                <div>Prompt for Feature</div>
+                                <div>⬇️</div>
+                                <div>Compilation Error</div>
+                                <div>⬇️</div>
+                                <div>Blindly Prompt to Fix Error</div>
+                                <div>⬇️</div>
+                                <div>Infinite Loop / Codebase Breakage</div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 italic mt-6">Relying on AI to debug issues you don't conceptually understand leads to terminal project fatigue.</p>
+                    </div>
+
+                    <!-- Right: Concept-First Blueprint -->
+                    <div class="card p-8 border-2 border-[#3b82f6] bg-[#3b82f6]/10 shadow-[0_0_20px_rgba(59,130,246,0.25)] flex flex-col justify-between build-step grow">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-4 flex items-center space-x-2">
+                                <span class="text-[#38bdf8]">✅</span>
+                                <span>The Concept-First Blueprint</span>
+                            </h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">Learn core paradigms (routing, state, database relationships) before starting your builder environment:</p>
+                            
+                            <ul class="space-y-4 text-xs text-slate-200">
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-[#38bdf8] font-bold">1.</span>
+                                    <span><strong>Architectural Blueprinting:</strong> Map data schemas, API routes, and system endpoints on paper first.</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-[#38bdf8] font-bold">2.</span>
+                                    <span><strong>Modular Instructions:</strong> Prompt for specific, isolated functions rather than asking the AI to "build everything."</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-[#38bdf8] font-bold">3.</span>
+                                    <span><strong>Rigorous Auditing:</strong> Manually audit imports, refactor redundant lines, and run security tests.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-6 bg-[#3b82f6]/20 text-[#38bdf8] text-xs font-bold text-center py-2.5 rounded uppercase tracking-wider">
+                            Code with Intent, not just Vibes
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 42: No-code / Vibe coding tools -->
+            <div class="slide" id="slide-42">
+                <div>
+                    <h2 class="slide-title">Top Vibe Coding & No-Code Builders</h2>
+                    <p class="slide-subtitle">Popular platforms compressing software ideation-to-launch cycles.</p>
+                </div>
+                
+                <div class="grid grid-cols-5 gap-4 my-auto">
+                    <!-- Bolt -->
+                    <div class="card p-5 h-80 flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="teal-circle-badge w-12 h-12 mb-4 overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                                <img src="assets/bolt.png" alt="Bolt.new" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                                <i data-lucide="zap" class="w-6 h-6 text-white hidden"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-4">Bolt.new</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">Browser-based fullstack React, Node environment running node containers completely client-side.</p>
+                        </div>
+                    </div>
+
+                    <!-- Lovable -->
+                    <div class="card p-5 h-80 flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="teal-circle-badge w-12 h-12 mb-4 overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                                <img src="assets/lovable.png" alt="Lovable" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                                <i data-lucide="layout" class="w-6 h-6 text-white hidden"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-4">Lovable.dev</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">High fidelity UI/UX builder, excels at translating user copy into beautiful styling features.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cursor -->
+                    <div class="card p-5 h-80 flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="teal-circle-badge w-12 h-12 mb-4 overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                                <img src="assets/cursor.png" alt="Cursor" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                                <i data-lucide="code" class="w-6 h-6 text-white hidden"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-4">Cursor</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">AI native VSCode fork. Writes massive codebase refactors conversationally directly in local folders.</p>
+                        </div>
+                    </div>
+
+                    <!-- v0 -->
+                    <div class="card p-5 h-80 flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="teal-circle-badge w-12 h-12 mb-4 overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                                <img src="assets/v0.png" alt="v0" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                                <i data-lucide="grid" class="w-6 h-6 text-white hidden"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-4">v0 (Vercel)</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">Generates production ready React/Tailwind frontend code structures matching standard designs.</p>
+                        </div>
+                    </div>
+
+                    <!-- Replit Agent -->
+                    <div class="card p-5 h-80 flex flex-col justify-between build-step grow">
+                        <div>
+                            <div class="teal-circle-badge w-12 h-12 mb-4 overflow-hidden p-1 flex items-center justify-center bg-white border border-teal-200">
+                                <img src="assets/replit.png" alt="Replit Agent" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.parentElement.classList.add('bg-[#00C2A8]');">
+                                <i data-lucide="cloud" class="w-6 h-6 text-white hidden"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-4">Replit Agent</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">Autonomous coding system, configures database tables, sets up auth routes, and deploys online.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 43: Building an App with Vibe Coding -->
+            <div class="slide" id="slide-43">
+                <div>
+                    <h2 class="slide-title">Vibe Coding App Walkthrough</h2>
+                    <p class="slide-subtitle">Building and hosting a prototype SaaS application in minutes.</p>
+                </div>
+                
+                <div class="flex items-stretch space-x-10 my-auto px-4">
+                    <div class="flex-1 card p-8 flex flex-col justify-between h-96 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="message-square" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">1. Prompt the Vision</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Describe the application goals, feature criteria, data parameters, and visual style in plain English.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 card p-8 flex flex-col justify-between h-96 border-2 border-[#00C2A8] bg-teal-50/5 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="cpu" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">2. Model Synthesizes</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">The agent analyzes prompt structure, writes files, solves dependencies, and loads an interactive visual preview panel.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 card p-8 flex flex-col justify-between h-96 build-step grow">
+                        <div>
+                            <div class="teal-circle-badge mb-6"><i data-lucide="sparkles" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">3. Iterate & Host</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">Chat further to change colors, add graphs, or add new buttons. Publish online instantly with 1-click deploy.</p>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 44: Risks & Limits -->
+            <div class="slide" id="slide-44">
+                <div>
+                    <h2 class="slide-title">Risks & Limitations of Agentic AI</h2>
+                    <p class="slide-subtitle">Why autonomous code execution requires robust human checkpoints.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-10 my-auto items-stretch">
+                    <!-- Risks -->
+                    <div class="card flex flex-col justify-between p-8 border-l-8 border-l-amber-500 build-step wipe-left">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="teal-circle-badge bg-amber-500"><i data-lucide="alert-triangle" class="w-6 h-6"></i></div>
+                                <h3 class="text-2xl font-bold text-slate-800">Critical Agent Risks</h3>
+                            </div>
+                            <p class="text-slate-600 text-base leading-relaxed mb-4">If left unmonitored, autonomous loops can enter infinite recursion cycles, execute unwanted database deletions, or accumulate massive API bills.</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded text-xs text-amber-800 font-semibold">
+                            ⚠️ Caution: Never grant write-access to financial or core server APIs.
+                        </div>
+                    </div>
+
+                    <!-- Guardrails -->
+                    <div class="card flex flex-col justify-between p-8 border-l-8 border-l-[#00C2A8] bg-teal-50/5 build-step wipe-left">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="teal-circle-badge"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                                <h3 class="text-2xl font-bold text-slate-800">Human-In-The-Loop</h3>
+                            </div>
+                            <p class="text-slate-600 text-base leading-relaxed mb-4">Define strict sandboxes, implement spending ceilings, use read-only APIs, and mandate manual confirmations before destructive actions.</p>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded text-xs text-teal-800 font-semibold">
+                            🛡️ Best Practice: Trust, but continuously monitor system logs.
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- Slide 45: Recap + Thank you -->
+            <div class="slide" id="slide-45">
+                <div>
+                    <h2 class="slide-title">Section 4 Recap: Agents & Vibe Coding</h2>
+                    <p class="slide-subtitle">Summary of agentic principles, Q&A session details.</p>
+                </div>
+                
+                <div class="my-auto space-y-4 max-w-5xl mx-auto w-full">
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">AI Agents are goal-driven and automate work by planning, tool usage, and loop self-reflection.</span>
+                    </div>
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">Vibe coding allows builders to program fullstack SaaS apps using natural language.</span>
+                    </div>
+                    <div class="card p-5 flex items-center space-x-6 border-l-8 border-l-[#00C2A8] build-step grow">
+                        <div class="teal-circle-badge w-10 h-10"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <span class="text-xl font-medium text-slate-800">Guardrails and Human-in-the-Loop checkpoints are mandatory to mitigate loops and execution errors.</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-6 bg-slate-900 text-white rounded-xl shadow-xl mt-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Thank You for Participating!</h3>
+                            <p class="text-xs text-slate-400 mt-1">Let's open the floor for questions and technical discussion.</p>
+                        </div>
+                        <span class="bg-[#00C2A8] text-white px-6 py-2 rounded-lg font-bold text-sm">Q & A Session</span>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+
+            <!-- ================= GLOBAL DECK HUD OVERLAY ================= -->
+            
+            <!-- Presentation Controls and Progress Bar (HUD Overlay) -->
+            <div class="presentation-controls">
+                <div class="flex items-center space-x-6">
+                    <span id="slide-counter" class="text-sm font-bold text-slate-400 font-mono flex items-center space-x-2">
+                        <span>Slide</span>
+                        <select id="slideSelect" class="slide-select-compact" onchange="goToSlide(parseInt(this.value))">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+                        <span id="total-slides-count">/ 45</span>
+                    </span>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="nav-btn btn-prev" onclick="prev()" title="Previous (Left Arrow / Backspace)">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button class="nav-btn btn-next" onclick="next()" title="Next (Right Arrow / Space / Enter)">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                    <button class="nav-btn bg-slate-100/10 hover:bg-slate-100/20 text-white border-slate-700" onclick="toggleFullScreen()" title="Fullscreen (F)">
+                        <i data-lucide="maximize" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Presentation scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
