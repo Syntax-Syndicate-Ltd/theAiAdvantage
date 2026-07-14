@@ -149,6 +149,11 @@ h1, h2, h3, .font-heading {
     color: var(--color-white);
 }
 
+/* Adjust timeline card padding to prevent text truncation */
+#slide-11 .card {
+    padding: 1.25rem !important;
+}
+
 /* Signature Motif: Teal Circle Badges */
 .teal-circle-badge {
     width: 4rem;
