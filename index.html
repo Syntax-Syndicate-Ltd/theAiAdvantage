@@ -47,13 +47,24 @@
                 </svg>
 
                 <div class="flex flex-col items-center justify-center h-full text-center z-10">
-                    <div class="teal-circle-badge w-24 h-24 mb-10 shadow-2xl animate-pulse">
-                        <i data-lucide="cpu" class="w-12 h-12"></i>
+                    <!-- Glassmorphic floating card for logos -->
+                    <div class="flex items-center justify-center space-x-12 px-12 py-8 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md mb-12 shadow-2xl">
+                        <img src="assets/syntax.png" alt="Syntax Syndicate" class="h-24 object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                        <div class="h-16 w-[1px] bg-white/20"></div>
+                        <img src="assets/intellecta.png" alt="Intellecta" class="h-36 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(56,189,248,0.2)]">
                     </div>
-                    <h1 class="text-7xl font-extrabold tracking-tight mb-6 leading-tight text-white">The AI Advantage</h1>
-                    <p class="text-3xl text-slate-300 max-w-4xl font-light mb-16">Understanding, Building & Working with GenAI</p>
-                    <div class="inline-block px-8 py-4 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-lg font-medium">
-                        Presenter: Intellecta Leads | 15 July 2026
+                    <!-- Premium gradient-textured main title -->
+                    <h1 class="text-8xl font-black tracking-tight mb-8 leading-tight bg-gradient-to-r from-white via-[#38bdf8] to-[#818cf8] bg-clip-text text-transparent drop-shadow-[0_4px_24px_rgba(56,189,248,0.15)]">The AI Advantage</h1>
+                    <p class="text-3xl text-slate-300 max-w-4xl font-normal mb-16 tracking-wide">Understanding, Building & Working with <span class="text-[#38bdf8] font-semibold">GenAI</span></p>
+                    <!-- Animated Presenter capsule badge -->
+                    <div class="inline-flex items-center space-x-3 px-8 py-3.5 rounded-full bg-white/[0.03] border border-white/10 text-slate-300 text-lg font-medium shadow-lg backdrop-blur-sm">
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38bdf8] opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#3b82f6]"></span>
+                        </span>
+                        <span>Presenter: <strong class="text-white font-semibold">Intellecta Leads</strong></span>
+                        <span class="text-white/20">|</span>
+                        <span class="text-slate-400">15 July 2026</span>
                     </div>
                 </div>
             </div>
@@ -871,71 +882,92 @@
                     <p class="slide-subtitle">Beyond single-shot prompts: how agents review, correct, and refine their own outputs recursively.</p>
                 </div>
                 
-                <div class="my-auto flex flex-col space-y-6 max-w-6xl mx-auto w-full">
-                    <!-- Visual Loop Diagram Container -->
-                    <div class="bg-slate-950/20 border border-white/5 p-6 rounded-2xl relative overflow-hidden flex flex-col space-y-4">
-                        <div class="grid grid-cols-11 gap-3 items-center">
-                            <!-- Step 1: Execute -->
-                            <div class="col-span-2 card p-5 text-center flex flex-col items-center justify-between min-h-[16rem] border-t-4 border-t-[#3b82f6] build-step grow">
-                                <div class="teal-circle-badge w-12 h-12 mb-4 bg-slate-800"><i data-lucide="play" class="w-6 h-6 text-white"></i></div>
-                                <h3 class="text-base font-bold text-white mb-2">1. Execution</h3>
-                                <p class="text-slate-300 text-[13px] leading-normal">Agent attempts the task, generating code, plans, or documents based on raw prompts.</p>
+                <div class="my-auto flex flex-col space-y-5 w-full max-w-6xl mx-auto">
+                    <div class="flex items-center justify-between w-full space-x-2">
+                        <!-- Step 1: Execution -->
+                        <div class="w-[240px] flex-shrink-0 card p-6 flex flex-col justify-between min-h-[19.5rem] border-t-4 border-t-[#3b82f6] relative build-step grow">
+                            <span class="absolute top-4 right-5 text-3xl font-black text-slate-700/30 font-mono select-none">01</span>
+                            <div>
+                                <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="play" class="w-5 h-5 text-white"></i></div>
+                                <h3 class="text-lg font-bold text-white mb-3">Execution</h3>
                             </div>
-
-                            <!-- Arrow 1 -->
-                            <div class="col-span-1 flex justify-center build-step grow">
-                                <i data-lucide="arrow-right" class="w-8 h-8 text-[#38bdf8]"></i>
-                            </div>
-
-                            <!-- Step 2: Evaluate -->
-                            <div class="col-span-2 card p-5 text-center flex flex-col items-center justify-between min-h-[16rem] border-t-4 border-t-[#3b82f6] build-step grow">
-                                <div class="teal-circle-badge w-12 h-12 mb-4 bg-slate-800"><i data-lucide="check-square" class="w-6 h-6 text-white"></i></div>
-                                <h3 class="text-base font-bold text-white mb-2">2. Evaluation</h3>
-                                <p class="text-slate-300 text-[13px] leading-normal">Outputs are validated against constraints (e.g., test compilers, schema parsers).</p>
-                            </div>
-
-                            <!-- Arrow 2 -->
-                            <div class="col-span-1 flex justify-center build-step grow">
-                                <i data-lucide="arrow-right" class="w-8 h-8 text-[#38bdf8]"></i>
-                            </div>
-
-                            <!-- Step 3: Reflect -->
-                            <div class="col-span-2 card p-5 text-center flex flex-col items-center justify-between min-h-[16rem] border-t-4 border-t-[#3b82f6] build-step grow">
-                                <div class="teal-circle-badge w-12 h-12 mb-4 bg-slate-800"><i data-lucide="help-circle" class="w-6 h-6 text-white"></i></div>
-                                <h3 class="text-base font-bold text-white mb-2">3. Reflection</h3>
-                                <p class="text-slate-300 text-[13px] leading-normal">The model analyzes any compile failures, error stack logs, or missing requirements.</p>
-                            </div>
-
-                            <!-- Arrow 3 -->
-                            <div class="col-span-1 flex justify-center build-step grow">
-                                <i data-lucide="arrow-right" class="w-8 h-8 text-[#38bdf8]"></i>
-                            </div>
-
-                            <!-- Step 4: Refine -->
-                            <div class="col-span-2 card p-5 text-center flex flex-col items-center justify-between min-h-[16rem] border-2 border-[#38bdf8] bg-[#3b82f6]/10 build-step grow">
-                                <div class="teal-circle-badge w-12 h-12 mb-4"><i data-lucide="refresh-cw" class="w-6 h-6 text-white animate-spin"></i></div>
-                                <h3 class="text-base font-bold text-white mb-2">4. Refinement</h3>
-                                <p class="text-slate-300 text-[13px] leading-normal">Agent updates its weights/prompt context and runs again, looping until standard criteria is met.</p>
+                            <div class="space-y-2 border-t border-white/5 pt-4">
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Agent attempts task</span></div>
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Generates raw code</span></div>
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Runs instruction</span></div>
                             </div>
                         </div>
 
-                        <!-- SVG return loop curve -->
-                        <div class="relative w-full h-12 mt-2 build-step grow">
-                            <svg class="w-full h-full overflow-visible" viewBox="0 0 1000 40">
-                                <path d="M 880,5 C 880,45 120,45 120,5" fill="none" stroke="#38bdf8" stroke-dasharray="6,4" stroke-width="2.5" />
-                                <polygon points="115,12 120,0 125,12" fill="#38bdf8" />
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="bg-[#0b0f19] border border-[#3b82f6]/40 px-4 py-1.5 rounded-full text-xs font-bold text-[#38bdf8] shadow-lg flex items-center space-x-1">
-                                    <span>🔄 Loop back with reflection log (Iterate until specific requirements are met)</span>
-                                </span>
+                        <!-- Arrow 1 -->
+                        <div class="flex-shrink-0 flex justify-center build-step grow px-1">
+                            <i data-lucide="arrow-right" class="w-6 h-6 text-[#38bdf8]"></i>
+                        </div>
+
+                        <!-- Step 2: Evaluation -->
+                        <div class="w-[240px] flex-shrink-0 card p-6 flex flex-col justify-between min-h-[19.5rem] border-t-4 border-t-[#3b82f6] relative build-step grow">
+                            <span class="absolute top-4 right-5 text-3xl font-black text-slate-700/30 font-mono select-none">02</span>
+                            <div>
+                                <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="check-square" class="w-5 h-5 text-white"></i></div>
+                                <h3 class="text-lg font-bold text-white mb-3">Evaluation</h3>
+                            </div>
+                            <div class="space-y-2 border-t border-white/5 pt-4">
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Validates inputs</span></div>
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Runs compiler tests</span></div>
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Parses schemas</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow 2 -->
+                        <div class="flex-shrink-0 flex justify-center build-step grow px-1">
+                            <i data-lucide="arrow-right" class="w-6 h-6 text-[#38bdf8]"></i>
+                        </div>
+
+                        <!-- Step 3: Reflection -->
+                        <div class="w-[240px] flex-shrink-0 card p-6 flex flex-col justify-between min-h-[19.5rem] border-t-4 border-t-[#3b82f6] relative build-step grow">
+                            <span class="absolute top-4 right-5 text-3xl font-black text-slate-700/30 font-mono select-none">03</span>
+                            <div>
+                                <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="help-circle" class="w-5 h-5 text-white"></i></div>
+                                <h3 class="text-lg font-bold text-white mb-3">Reflection</h3>
+                            </div>
+                            <div class="space-y-2 border-t border-white/5 pt-4">
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Parses stack logs</span></div>
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Identifies failure</span></div>
+                                <div class="flex items-center space-x-2 text-base text-slate-300"><span>•</span> <span>Locates needs</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow 3 -->
+                        <div class="flex-shrink-0 flex justify-center build-step grow px-1">
+                            <i data-lucide="arrow-right" class="w-6 h-6 text-[#38bdf8]"></i>
+                        </div>
+
+                        <!-- Step 4: Refinement -->
+                        <div class="w-[240px] flex-shrink-0 card p-6 flex flex-col justify-between min-h-[19.5rem] border-2 border-[#38bdf8] bg-[#3b82f6]/10 shadow-[0_0_20px_rgba(59,130,246,0.25)] relative build-step grow">
+                            <span class="absolute top-4 right-5 text-3xl font-black text-[#38bdf8]/20 font-mono select-none">04</span>
+                            <div>
+                                <div class="teal-circle-badge w-10 h-10 mb-4"><i data-lucide="refresh-cw" class="w-5 h-5 text-white animate-spin"></i></div>
+                                <h3 class="text-lg font-bold text-white mb-3">Refinement</h3>
+                            </div>
+                            <div class="space-y-2 border-t border-white/10 pt-4">
+                                <div class="flex items-center space-x-2 text-base text-slate-200"><span>•</span> <span>Appends trace info</span></div>
+                                <div class="flex items-center space-x-2 text-base text-slate-200"><span>•</span> <span>Modifies core prompt</span></div>
+                                <div class="flex items-center space-x-2 text-base text-slate-200"><span>•</span> <span>Executes loop again</span></div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Bottom Loopback Banner -->
+                    <div class="bg-sky-950/20 border border-sky-500/15 p-4 rounded-xl flex items-center justify-between w-full build-step grow">
+                        <div class="flex items-center space-x-3 text-sm font-medium text-slate-300">
+                            <i data-lucide="refresh-cw" class="w-5 h-5 text-sky-400 animate-pulse"></i>
+                            <span><strong>Loopback Flow:</strong> Correction metrics and errors recursively route from Refinement back into Step 1.</span>
+                        </div>
+                        <span class="text-xs font-mono font-bold bg-sky-900 border border-sky-500/20 text-sky-300 px-3.5 py-1.5 rounded-full uppercase tracking-wider">Iterates until criteria met</span>
+                    </div>
+
                     <!-- Explanatory note -->
                     <div class="bg-slate-950/40 border border-white/10 p-5 rounded-xl flex items-center space-x-4 build-step grow">
-                        <div class="teal-circle-badge w-12 h-12 flex-shrink-0"><i data-lucide="repeat" class="w-6 h-6 text-white"></i></div>
+                        <div class="teal-circle-badge w-10 h-10 flex-shrink-0"><i data-lucide="repeat" class="w-5 h-5 text-white"></i></div>
                         <p class="text-slate-300 text-sm leading-relaxed">
                             <strong>🔄 Why This Matters:</strong> LLMs are prone to one-shot errors. By wrapping them in a **reflection cycle**—where the output is compiled, verified for errors, and re-fed as context—agents can self-correct their own bugs and work autonomously until the objective is reached.
                         </p>
@@ -1033,234 +1065,225 @@
                     <p class="slide-subtitle">A comprehensive landscape of industry-leading engines across core digital medium types.</p>
                 </div>
                 
-                <div class="grid grid-cols-5 gap-5 items-stretch w-full max-w-6xl mx-auto my-auto">
-                    <!-- Text & Logic -->
-                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
-                        <div>
-                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="file-text" class="w-5 h-5 text-white"></i></div>
-                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Text & Logic</h3>
+                <div class="flex flex-col space-y-6 w-full max-w-6xl mx-auto my-auto px-4">
+                    <!-- Top Row: 3 columns -->
+                    <div class="grid grid-cols-3 gap-6 items-stretch w-full">
+                        <!-- Text & Logic -->
+                        <div class="card p-6 flex flex-col justify-start build-step grow border-t-4 border-t-[#3b82f6]">
+                            <h3 class="font-bold text-lg text-white mb-4 border-b pb-2 border-white/5 flex items-center space-x-2">
+                                <i data-lucide="file-text" class="w-5 h-5 text-[#38bdf8]"></i>
+                                <span>Text & Logic</span>
+                            </h3>
                             <div class="space-y-3">
-                                <!-- Tool 1 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Claude -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/claude.png" alt="Claude" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="shield-check" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="shield-check" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Claude 3.5</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Reasoning & Coding</p>
+                                        <h4 class="font-bold text-sm text-white">Claude 3.5</h4>
+                                        <p class="text-xs text-slate-400">Logic & Advanced Coding</p>
                                     </div>
                                 </div>
-                                <!-- Tool 2 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- GPT-4o -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/chatgpt.png" alt="GPT-4o" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="message-square" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="message-square" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">GPT-4o</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Speed & Multimodality</p>
+                                        <h4 class="font-bold text-sm text-white">GPT-4o</h4>
+                                        <p class="text-xs text-slate-400">Multimodal Speed</p>
                                     </div>
                                 </div>
-                                <!-- Tool 3 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Gemini Pro -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/gemini.png" alt="Gemini Pro" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="sparkles" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="sparkles" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Gemini Pro</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">2M Token Context</p>
+                                        <h4 class="font-bold text-sm text-white">Gemini Pro</h4>
+                                        <p class="text-xs text-slate-400">2M Token Context</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
-                            Semantic Logic
-                        </div>
-                    </div>
 
-                    <!-- Image Synthesis -->
-                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
-                        <div>
-                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="palette" class="w-5 h-5 text-white"></i></div>
-                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Image Synthesis</h3>
+                        <!-- Image Synthesis -->
+                        <div class="card p-6 flex flex-col justify-start build-step grow border-t-4 border-t-[#3b82f6]">
+                            <h3 class="font-bold text-lg text-white mb-4 border-b pb-2 border-white/5 flex items-center space-x-2">
+                                <i data-lucide="palette" class="w-5 h-5 text-[#38bdf8]"></i>
+                                <span>Image Synthesis</span>
+                            </h3>
                             <div class="space-y-3">
-                                <!-- Tool 1 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Midjourney -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/midjourney.png" alt="Midjourney" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="palette" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="palette" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Midjourney</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Cinematic Artistry</p>
+                                        <h4 class="font-bold text-sm text-white">Midjourney</h4>
+                                        <p class="text-xs text-slate-400">Cinematic Artistry</p>
                                     </div>
                                 </div>
-                                <!-- Tool 2 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- DALL-E 3 -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/dalle.png" alt="DALL-E 3" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="image" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="image" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">DALL-E 3</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Prompt Adherence</p>
+                                        <h4 class="font-bold text-sm text-white">DALL-E 3</h4>
+                                        <p class="text-xs text-slate-400">Prompt Adherence</p>
                                     </div>
                                 </div>
-                                <!-- Tool 3 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Adobe Firefly -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/adobe-firefly.png" alt="Adobe Firefly" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="shield" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="shield" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Adobe Firefly</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Commercial Safety</p>
+                                        <h4 class="font-bold text-sm text-white">Adobe Firefly</h4>
+                                        <p class="text-xs text-slate-400">Commercial Safety</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
-                            Visual Rendition
-                        </div>
-                    </div>
 
-                    <!-- Video & Motion -->
-                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
-                        <div>
-                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="film" class="w-5 h-5 text-white"></i></div>
-                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Video & Motion</h3>
+                        <!-- Video & Motion -->
+                        <div class="card p-6 flex flex-col justify-start build-step grow border-t-4 border-t-[#3b82f6]">
+                            <h3 class="font-bold text-lg text-white mb-4 border-b pb-2 border-white/5 flex items-center space-x-2">
+                                <i data-lucide="film" class="w-5 h-5 text-[#38bdf8]"></i>
+                                <span>Video & Motion</span>
+                            </h3>
                             <div class="space-y-3">
-                                <!-- Tool 1 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Runway -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/runway.png" alt="Runway Gen-3" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="video" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="video" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Runway Gen-3</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Camera Vector Control</p>
+                                        <h4 class="font-bold text-sm text-white">Runway Gen-3</h4>
+                                        <p class="text-xs text-slate-400">Camera Motion Control</p>
                                     </div>
                                 </div>
-                                <!-- Tool 2 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Sora -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/sora.png" alt="OpenAI Sora" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="film" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="film" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">OpenAI Sora</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Physics-Based 3D</p>
+                                        <h4 class="font-bold text-sm text-white">OpenAI Sora</h4>
+                                        <p class="text-xs text-slate-400">Physics-Based 3D Sim</p>
                                     </div>
                                 </div>
-                                <!-- Tool 3 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Pika -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/pika.png" alt="Pika Labs" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="play-circle" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="play-circle" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Pika Labs</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Fast Localized Clip</p>
+                                        <h4 class="font-bold text-sm text-white">Pika Labs</h4>
+                                        <p class="text-xs text-slate-400">Fast Localized Editing</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
-                            Temporal Physics
-                        </div>
                     </div>
 
-                    <!-- Software Dev -->
-                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
-                        <div>
-                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="code" class="w-5 h-5 text-white"></i></div>
-                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Software Dev</h3>
+                    <!-- Bottom Row: 2 columns centered -->
+                    <div class="grid grid-cols-2 gap-6 items-stretch w-full max-w-4xl mx-auto">
+                        <!-- Software Dev -->
+                        <div class="card p-6 flex flex-col justify-start build-step grow border-t-4 border-t-[#3b82f6]">
+                            <h3 class="font-bold text-lg text-white mb-4 border-b pb-2 border-white/5 flex items-center space-x-2">
+                                <i data-lucide="code" class="w-5 h-5 text-[#38bdf8]"></i>
+                                <span>Software Dev</span>
+                            </h3>
                             <div class="space-y-3">
-                                <!-- Tool 1 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
-                                        <img src="assets/curser.png" alt="Cursor Editor" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="code" class="w-4 h-4 text-slate-800 hidden"></i>
+                                <!-- Cursor -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/curser.png" alt="Cursor" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="code" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Cursor Editor</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Agentic Refactoring</p>
+                                        <h4 class="font-bold text-sm text-white">Cursor Editor</h4>
+                                        <p class="text-xs text-slate-400">Agentic Refactoring IDE</p>
                                     </div>
                                 </div>
-                                <!-- Tool 2 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
-                                        <img src="assets/copilot.png" alt="GitHub Copilot" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="terminal" class="w-4 h-4 text-slate-800 hidden"></i>
+                                <!-- Copilot -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/copilot.png" alt="Copilot" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="terminal" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">GitHub Copilot</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Context Autocomplete</p>
+                                        <h4 class="font-bold text-sm text-white">GitHub Copilot</h4>
+                                        <p class="text-xs text-slate-400">Contextual Code Completion</p>
                                     </div>
                                 </div>
-                                <!-- Tool 3 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Bolt.new -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/bolt.png" alt="Bolt.new" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="zap" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="zap" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Bolt.new</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Sandbox Deployments</p>
+                                        <h4 class="font-bold text-sm text-white">Bolt.new</h4>
+                                        <p class="text-xs text-slate-400">Fullstack Sandbox Deployments</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
-                            Agentic Coding
-                        </div>
-                    </div>
 
-                    <!-- Voice & Audio -->
-                    <div class="card p-5 flex flex-col justify-between build-step grow border-t-4 border-t-[#3b82f6]">
-                        <div>
-                            <div class="teal-circle-badge w-10 h-10 mb-4 bg-slate-800"><i data-lucide="headphones" class="w-5 h-5 text-white"></i></div>
-                            <h3 class="font-bold text-base text-white mb-4 border-b pb-2 border-white/5">Voice & Audio</h3>
+                        <!-- Voice & Audio -->
+                        <div class="card p-6 flex flex-col justify-start build-step grow border-t-4 border-t-[#3b82f6]">
+                            <h3 class="font-bold text-lg text-white mb-4 border-b pb-2 border-white/5 flex items-center space-x-2">
+                                <i data-lucide="headphones" class="w-5 h-5 text-[#38bdf8]"></i>
+                                <span>Voice & Audio</span>
+                            </h3>
                             <div class="space-y-3">
-                                <!-- Tool 1 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- ElevenLabs -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/elevenlabs.png" alt="ElevenLabs" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="mic" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="mic" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">ElevenLabs</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Realistic Cloning</p>
+                                        <h4 class="font-bold text-sm text-white">ElevenLabs</h4>
+                                        <p class="text-xs text-slate-400">Realistic Voice Cloning</p>
                                     </div>
                                 </div>
-                                <!-- Tool 2 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
-                                        <img src="assets/suno.png" alt="Suno Music" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="music" class="w-4 h-4 text-slate-800 hidden"></i>
+                                <!-- Suno -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
+                                        <img src="assets/suno.png" alt="Suno" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <i data-lucide="music" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Suno Music</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Full Compositions</p>
+                                        <h4 class="font-bold text-sm text-white">Suno Music</h4>
+                                        <p class="text-xs text-slate-400">Full Audio Composition</p>
                                     </div>
                                 </div>
-                                <!-- Tool 3 -->
-                                <div class="flex items-center space-x-2.5 bg-white/5 border border-white/5 p-2 rounded-lg hover:bg-white/10 hover:border-white/10 transition-all duration-300">
-                                    <div class="w-6 h-6 rounded-md overflow-hidden bg-white p-0.5 flex-shrink-0 flex items-center justify-center">
+                                <!-- Udio -->
+                                <div class="flex items-center space-x-3 bg-white/5 border border-white/5 p-2 rounded-xl hover:bg-white/10 hover:border-white/10 hover:translate-x-1 transition-all duration-300">
+                                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white p-1.5 flex-shrink-0 flex items-center justify-center">
                                         <img src="assets/udio.png" alt="Udio" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                        <i data-lucide="headphones" class="w-4 h-4 text-slate-800 hidden"></i>
+                                        <i data-lucide="headphones" class="w-5 h-5 text-slate-800 hidden"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-[11px] text-white truncate">Udio</h4>
-                                        <p class="text-[9px] text-slate-400 truncate">Hi-Fi Audio Tracks</p>
+                                        <h4 class="font-bold text-sm text-white">Udio Music</h4>
+                                        <p class="text-xs text-slate-400">Hi-Fi Audio Tracks</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mt-6 bg-[#3b82f6]/10 text-[#38bdf8] text-[10px] font-bold text-center py-1.5 rounded uppercase tracking-wider">
-                            Acoustic Synthesis
                         </div>
                     </div>
                 </div>
@@ -2647,6 +2670,9 @@
                     <button class="nav-btn btn-next" onclick="next()" title="Next (Right Arrow / Space / Enter)">
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
+                    <button class="nav-btn bg-slate-100/10 hover:bg-slate-100/20 text-white border-slate-700" onclick="toggleSyncModal()" title="Remote Control Sync">
+                        <i data-lucide="radio" class="w-5 h-5"></i>
+                    </button>
                     <button class="nav-btn bg-slate-100/10 hover:bg-slate-100/20 text-white border-slate-700" onclick="toggleFullScreen()" title="Fullscreen (F)">
                         <i data-lucide="maximize" class="w-5 h-5"></i>
                     </button>
@@ -2656,7 +2682,96 @@
         </div>
     </div>
 
+    <!-- Remote Sync Modal -->
+    <div id="sync-modal" class="hidden fixed inset-0 bg-slate-950/75 backdrop-filter backdrop-blur-md flex items-center justify-center z-50">
+        <div class="card max-w-sm w-full p-6 space-y-4 border border-white/10 relative text-white bg-slate-900/90 shadow-2xl">
+            <button class="absolute top-4 right-4 text-slate-400 hover:text-white" onclick="toggleSyncModal()">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h3 class="text-xl font-bold text-white flex items-center space-x-2">
+                <i data-lucide="radio" class="text-sky-400 animate-pulse"></i>
+                <span>Remote Sync Controller</span>
+            </h3>
+            <p class="text-xs text-slate-400">Control this presentation on the projector live from your mobile phone web browser.</p>
+            
+            <!-- QR Code Section -->
+            <div id="sync-qrcode-wrapper" class="flex flex-col items-center justify-center bg-white p-3 rounded-lg w-36 h-36 mx-auto border border-white/10 hidden">
+                <img id="sync-qrcode" src="" alt="Scan QR Code" class="w-full h-full object-contain">
+            </div>
+
+            <!-- Session ID -->
+            <div class="space-y-1.5">
+                <label class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Session ID</label>
+                <div class="flex space-x-2">
+                    <input type="text" id="sync-session-id" class="bg-slate-950 border border-white/10 rounded px-3 py-1.5 text-sm text-white font-mono flex-1" readonly>
+                    <button class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded text-xs font-bold" onclick="generateNewSession()">Regen</button>
+                </div>
+            </div>
+
+            <!-- Role selector -->
+            <div class="space-y-1.5">
+                <label class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Device Mode</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="sync-mode-receiver" class="bg-[#3b82f6]/25 border border-[#3b82f6] text-white py-2 rounded text-xs font-bold" onclick="setSyncRole('receiver')">📽️ Projector</button>
+                    <button id="sync-mode-controller" class="bg-slate-800 border border-white/5 text-slate-300 py-2 rounded text-xs font-bold" onclick="setSyncRole('controller')">📱 Phone Remote</button>
+                </div>
+            </div>
+
+            <!-- Connection Status -->
+            <div class="flex justify-between items-center bg-white/5 border border-white/5 p-2.5 rounded text-xs">
+                <span class="text-slate-400">Connection status:</span>
+                <span id="sync-status" class="font-bold text-rose-400">Disconnected</span>
+            </div>
+
+            <!-- Connect button -->
+            <button id="sync-connect-btn" class="w-full bg-[#3b82f6] hover:bg-blue-600 text-white font-bold py-2.5 rounded text-xs transition-all duration-300" onclick="connectSync()">
+                Connect Remote Sync
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Remote Overlay UI -->
+    <div id="mobile-remote-ui" class="hidden fixed inset-0 bg-[#090d16] flex flex-col justify-between p-6 z-[100] text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/5 pb-4">
+            <span class="text-sm font-bold text-sky-400 flex items-center space-x-2">
+                <i data-lucide="radio" class="w-4 h-4 animate-pulse"></i>
+                <span>Intellecta Remote</span>
+            </span>
+            <span id="remote-session-badge" class="text-xs font-mono bg-slate-900 border border-white/5 px-2.5 py-0.5 rounded">SESSION: ...</span>
+        </div>
+
+        <!-- Slide Info -->
+        <div class="text-center my-auto space-y-3">
+            <span id="remote-slide-num" class="text-xs uppercase tracking-widest text-slate-400 font-bold">Slide 1 / 44</span>
+            <h2 id="remote-slide-title" class="text-2xl font-black text-white">The AI Advantage</h2>
+            <p id="remote-slide-subtitle" class="text-xs text-slate-400">Introduction Slide</p>
+        </div>
+
+        <!-- Big Clicker Buttons -->
+        <div class="grid grid-rows-2 gap-4 h-1/2">
+            <!-- Next Button -->
+            <button class="bg-[#3b82f6] hover:bg-blue-600 active:scale-95 text-white font-extrabold text-2xl rounded-2xl shadow-lg border border-blue-400/20 transition-all duration-200 flex flex-col items-center justify-center space-y-1" onclick="triggerRemoteNext()">
+                <i data-lucide="chevron-right" class="w-8 h-8"></i>
+                <span>NEXT STEP</span>
+            </button>
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Prev Button -->
+                <button class="bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-300 font-bold text-sm rounded-xl border border-white/5 transition-all duration-200 flex flex-col items-center justify-center" onclick="triggerRemotePrev()">
+                    <i data-lucide="chevron-left" class="w-5 h-5 mb-1"></i>
+                    <span>PREVIOUS</span>
+                </button>
+                <!-- Disconnect Button -->
+                <button class="bg-rose-950/40 hover:bg-rose-950/60 active:scale-95 text-rose-300 border border-rose-500/20 text-xs rounded-xl transition-all duration-200 flex flex-col items-center justify-center" onclick="disconnectRemote()">
+                    <i data-lucide="power" class="w-5 h-5 mb-1"></i>
+                    <span>DISCONNECT</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Presentation scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

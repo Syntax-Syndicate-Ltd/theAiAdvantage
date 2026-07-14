@@ -14,6 +14,13 @@ const slide41bLogs = [
     '<div class="text-amber-500 font-bold">[BILL] OpenAI API monthly cap reached! Suspending...</div>'
 ];
 
+// Remote Sync state variables
+let syncSessionId = '';
+let syncRole = 'receiver';
+let isSyncConnected = false;
+let isLocalChange = true;
+let mqttClient = null;
+
 // Initialize slide deck
 function initDeck() {
     slides = document.querySelectorAll('.slide');
@@ -35,9 +42,32 @@ function initDeck() {
         totalCountEl.textContent = `/ ${totalSlides}`;
     }
 
-    // Check URL hash for starting slide (e.g. #slide-15 starts on slide index 14)
+    // Check URL hash for starting slide / remote parameters
     const hash = window.location.hash;
-    if (hash && hash.startsWith('#slide-')) {
+    const hashParams = new URLSearchParams(hash.substring(1));
+    const sessParam = hashParams.get('session');
+    const roleParam = hashParams.get('role');
+    
+    if (sessParam && roleParam) {
+        syncSessionId = sessParam;
+        syncRole = roleParam;
+        
+        const badge = document.getElementById('remote-session-badge');
+        if (badge) badge.textContent = `SESSION: ${syncSessionId}`;
+        
+        if (roleParam === 'controller') {
+            const remoteUi = document.getElementById('mobile-remote-ui');
+            if (remoteUi) remoteUi.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        setSyncRole(syncRole);
+        const sessInput = document.getElementById('sync-session-id');
+        if (sessInput) sessInput.value = syncSessionId;
+        
+        // Auto-connect Remote
+        connectSync();
+    } else if (hash && hash.startsWith('#slide-')) {
         const slideIndex = parseInt(hash.replace('#slide-', '')) - 1;
         if (slideIndex >= 0 && slideIndex < totalSlides) {
             currentSlide = slideIndex;
@@ -84,6 +114,19 @@ function resizeDeck() {
 function goToSlide(index, direction = 'next') {
     if (index < 0 || index >= totalSlides) return;
     
+    // Toggle global brand logos (hide on Slide 1 to avoid double-logos)
+    const globalLeft = document.querySelector('.global-logo-left');
+    const globalRight = document.querySelector('.global-logo-right');
+    if (globalLeft && globalRight) {
+        if (index === 0) {
+            globalLeft.style.setProperty('display', 'none', 'important');
+            globalRight.style.setProperty('display', 'none', 'important');
+        } else {
+            globalLeft.style.display = '';
+            globalRight.style.display = '';
+        }
+    }
+
     // Deactivate current slide
     const oldSlideEl = slides[currentSlide];
     if (oldSlideEl) {
@@ -130,6 +173,16 @@ function goToSlide(index, direction = 'next') {
 
     // Sync window location hash
     window.location.hash = `slide-${currentSlide + 1}`;
+    
+    // Sync to mobile remote view if controller
+    if (syncRole === 'controller') {
+        updateMobileRemoteUI();
+    }
+    
+    // Publish sync state to MQTT if connected and change is local
+    if (isSyncConnected && syncRole === 'controller' && isLocalChange) {
+        publishSyncState();
+    }
 }
 
 // Slide Build-Step Controller
@@ -146,6 +199,11 @@ function next() {
         handleStepReveal(currentSlide, currentStep);
         
         currentStep++;
+        
+        // Publish step changes
+        if (isSyncConnected && syncRole === 'controller' && isLocalChange) {
+            publishSyncState();
+        }
     } else {
         // No more steps on this slide, advance to next slide
         if (currentSlide < totalSlides - 1) {
@@ -166,6 +224,11 @@ function prev() {
         
         // Custom animation handlers inside diagrams on step hide
         handleStepHide(currentSlide, currentStep);
+        
+        // Publish step changes
+        if (isSyncConnected && syncRole === 'controller' && isLocalChange) {
+            publishSyncState();
+        }
     } else {
         // No active steps remaining, go to previous slide
         if (currentSlide > 0) {
@@ -571,6 +634,180 @@ function handleSwipe() {
         // Swiped right (Prev)
         prev();
     }
+}
+
+// Remote Sync State & Handlers
+function toggleSyncModal() {
+    const modal = document.getElementById('sync-modal');
+    if (modal) {
+        modal.classList.toggle('hidden');
+        if (!modal.classList.contains('hidden') && !syncSessionId) {
+            generateNewSession();
+        }
+    }
+}
+
+function generateNewSession() {
+    const rand = Math.floor(1000 + Math.random() * 9000);
+    syncSessionId = `INT-${rand}`;
+    const sessInput = document.getElementById('sync-session-id');
+    if (sessInput) sessInput.value = syncSessionId;
+    
+    // Update QR Code image pointing to the mobile remote controller route
+    const qrWrapper = document.getElementById('sync-qrcode-wrapper');
+    const qrImg = document.getElementById('sync-qrcode');
+    const mobileUrl = `${window.location.origin}${window.location.pathname}#session=${syncSessionId}&role=controller`;
+    
+    if (qrImg) qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${encodeURIComponent(mobileUrl)}`;
+    if (qrWrapper) qrWrapper.classList.remove('hidden');
+}
+
+function setSyncRole(role) {
+    syncRole = role;
+    const recBtn = document.getElementById('sync-mode-receiver');
+    const ctrlBtn = document.getElementById('sync-mode-controller');
+    
+    if (role === 'receiver') {
+        if (recBtn) recBtn.className = 'bg-[#3b82f6]/25 border border-[#3b82f6] text-white py-2 rounded text-xs font-bold';
+        if (ctrlBtn) ctrlBtn.className = 'bg-slate-800 border border-white/5 text-slate-400 py-2 rounded text-xs font-bold';
+    } else {
+        if (recBtn) recBtn.className = 'bg-slate-800 border border-white/5 text-slate-400 py-2 rounded text-xs font-bold';
+        if (ctrlBtn) ctrlBtn.className = 'bg-[#3b82f6]/25 border border-[#3b82f6] text-white py-2 rounded text-xs font-bold';
+    }
+}
+
+function connectSync() {
+    const statusEl = document.getElementById('sync-status');
+    const connectBtn = document.getElementById('sync-connect-btn');
+    
+    if (typeof mqtt === 'undefined') {
+        if (statusEl) {
+            statusEl.textContent = 'MQTT Library offline!';
+            statusEl.className = 'font-bold text-rose-400';
+        }
+        return;
+    }
+    
+    if (isSyncConnected) {
+        if (mqttClient) mqttClient.end();
+        isSyncConnected = false;
+        if (statusEl) {
+            statusEl.textContent = 'Disconnected';
+            statusEl.className = 'font-bold text-rose-400';
+        }
+        if (connectBtn) connectBtn.textContent = 'Connect Remote Sync';
+        return;
+    }
+    
+    if (statusEl) statusEl.textContent = 'Connecting...';
+    
+    // Connect to EMQX public MQTT secure WebSocket broker
+    mqttClient = mqtt.connect('wss://broker.emqx.io:8084/mqtt');
+    
+    mqttClient.on('connect', () => {
+        isSyncConnected = true;
+        if (statusEl) {
+            statusEl.textContent = 'Connected ✔';
+            statusEl.className = 'font-bold text-emerald-400 animate-pulse';
+        }
+        if (connectBtn) connectBtn.textContent = 'Disconnect Remote';
+        
+        mqttClient.subscribe(`intellecta/presentation/sync/${syncSessionId}`);
+        
+        if (syncRole === 'receiver') {
+            mqttClient.subscribe(`intellecta/presentation/sync/${syncSessionId}/query`);
+            // Query current state from controller
+            mqttClient.publish(`intellecta/presentation/sync/${syncSessionId}/query`, 'request');
+        } else if (syncRole === 'controller') {
+            mqttClient.subscribe(`intellecta/presentation/sync/${syncSessionId}/query`);
+            publishSyncState();
+        }
+    });
+    
+    mqttClient.on('message', (topic, message) => {
+        const msgStr = message.toString();
+        if (topic === `intellecta/presentation/sync/${syncSessionId}`) {
+            try {
+                const data = JSON.parse(msgStr);
+                if (data.sender !== syncRole) {
+                    isLocalChange = false;
+                    goToSlide(data.slide);
+                    syncRevealSteps(data.step);
+                    isLocalChange = true;
+                }
+            } catch (err) {
+                console.error("MQTT Message parse error: ", err);
+            }
+        } else if (topic === `intellecta/presentation/sync/${syncSessionId}/query`) {
+            if (msgStr === 'request' && syncRole === 'controller') {
+                publishSyncState();
+            }
+        }
+    });
+}
+
+function publishSyncState() {
+    if (isSyncConnected && syncRole === 'controller' && mqttClient) {
+        const payload = {
+            sender: 'controller',
+            slide: currentSlide,
+            step: currentStep
+        };
+        mqttClient.publish(`intellecta/presentation/sync/${syncSessionId}`, JSON.stringify(payload));
+    }
+}
+
+function syncRevealSteps(targetStepCount) {
+    const activeSlideEl = slides[currentSlide];
+    if (!activeSlideEl) return;
+    const steps = activeSlideEl.querySelectorAll('.build-step');
+    currentStep = targetStepCount;
+    steps.forEach((step, idx) => {
+        if (idx < targetStepCount) {
+            step.classList.add('revealed');
+        } else {
+            step.classList.remove('revealed');
+        }
+    });
+    
+    initInteractiveSlide(currentSlide);
+    if (window.lucide) window.lucide.createIcons();
+}
+
+function updateMobileRemoteUI() {
+    const activeSlideEl = slides[currentSlide];
+    if (!activeSlideEl) return;
+    const titleEl = activeSlideEl.querySelector('.slide-title') || activeSlideEl.querySelector('h1');
+    const subtitleEl = activeSlideEl.querySelector('.slide-subtitle') || activeSlideEl.querySelector('p');
+    
+    const titleText = titleEl ? titleEl.textContent : 'Slide';
+    const subtitleText = subtitleEl ? subtitleEl.textContent : '';
+    
+    const remoteSlideNum = document.getElementById('remote-slide-num');
+    const remoteTitle = document.getElementById('remote-slide-title');
+    const remoteSubtitle = document.getElementById('remote-slide-subtitle');
+    
+    if (remoteSlideNum) remoteSlideNum.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+    if (remoteTitle) remoteTitle.textContent = titleText;
+    if (remoteSubtitle) remoteSubtitle.textContent = subtitleText;
+}
+
+function triggerRemoteNext() {
+    next();
+    publishSyncState();
+    updateMobileRemoteUI();
+}
+
+function triggerRemotePrev() {
+    prev();
+    publishSyncState();
+    updateMobileRemoteUI();
+}
+
+function disconnectRemote() {
+    if (mqttClient) mqttClient.end();
+    window.location.hash = '';
+    window.location.reload();
 }
 
 // Auto-initialize when window loads
